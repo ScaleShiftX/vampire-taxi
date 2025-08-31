@@ -44,7 +44,7 @@ We've had one person have a crackling issue when using 16-bit sound, and the pro
 
 ## Licence
     Vampire Taxi
-    Quadruped survival game with physics-based combat
+    Play as a sentient taxi with a dark secret...
     Copyright (C) 2025 ScaleShift
 
     This program is free software: you can redistribute it and/or modify
