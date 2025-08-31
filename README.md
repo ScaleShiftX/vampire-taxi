@@ -1,7 +1,7 @@
 # Vampire Taxi
 ![Alt Text](image_link)
 
-It's a game!
+Play as a sentient taxi with a dark secret...
 
 ## Control Binds
 | Bind  | Action |
