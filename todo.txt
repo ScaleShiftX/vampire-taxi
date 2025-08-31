@@ -1,0 +1,21 @@
+SCALESHIFT
+Fucking do everything
+Character controller
+Pedestrians
+NPC cars
+Cop cars
+
+LOLBOT
+Set the car to be resting directly on the origin
+
+Set the car's forward vector to point along Godot's -Z = Blender's -Y
+(Blender uses Z for the up axis whereas Godot uses Y for the up axis)
+
+Make each wheel:
+- a separate object
+- with their origins at their centres
+- - in object mode > select the object > object dropdown in the top-left > set origin > center of mass (volume)
+- - Then press Alt+g to reset transform
+- and their forward vectors in the direction of travel
+
+Add fangs to taxi

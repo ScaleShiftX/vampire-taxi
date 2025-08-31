@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdtqweudkqgyj"]
+
+[ext_resource type="Script" uid="uid://bur8h7jgtw28u" path="res://taxi/Wheel.cs" id="1_hhad1"]
+[ext_resource type="PackedScene" uid="uid://ccbf8ts8b40ta" path="res://taxi/taxi_wheel.blend" id="2_c8f5p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8v81"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vyht1"]
+height = 0.372429
+radius = 0.601074
+
+[node name="Wheel" type="RigidBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_l8v81")
+can_sleep = false
+script = ExtResource("1_hhad1")
+_isTurnable = true
+
+[node name="Mesh (CSG)" type="CSGCylinder3D" parent="."]
+visible = false
+calculate_tangents = false
+radius = 0.601563
+height = 0.362503
+sides = 16
+smooth_faces = false
+
+[node name="taxi_wheel" parent="." instance=ExtResource("2_c8f5p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.00753999, 0, 0)
+shape = SubResource("CylinderShape3D_vyht1")
