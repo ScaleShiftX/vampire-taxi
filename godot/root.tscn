@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbs6egjvjhfx4"]
+[gd_scene load_steps=11 format=3 uid="uid://bbs6egjvjhfx4"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/taxi.blend" id="1_pq8q7"]
@@ -11,10 +11,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jnlp7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pyidc"]
-size = Vector3(2.53418, 1.72984, 4.57959)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnlp7"]
-albedo_texture = ExtResource("2_pyidc")
+size = Vector3(1.44141, 0.914206, 4.57959)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvh5c"]
 albedo_texture = ExtResource("2_pyidc")
@@ -25,15 +22,17 @@ albedo_texture = ExtResource("2_pyidc")
 visible = false
 script = ExtResource("1_jnlp7")
 
-[node name="PlayerController" type="RigidBody3D" parent="."]
+[node name="PlayerController" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358759, 0)
 physics_material_override = SubResource("PhysicsMaterial_jnlp7")
-gravity_scale = 0.0
 can_sleep = false
+engine_force = 3000.0
 script = ExtResource("1_vvh5c")
 _blend = ExtResource("1_pq8q7")
+_engineForce = 3000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.105, 0.006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968728, 0.006)
 shape = SubResource("BoxShape3D_pyidc")
 
 [node name="CameraPivot" type="Node3D" parent="PlayerController"]
@@ -51,47 +50,27 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.023, 0)
 visible = false
 
-[node name="WheelFrontLeft" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, -1.49691)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isAcceleratable = true
+[node name="WheelFrontLeft" parent="PlayerController" instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.156, 0.637, -1.497)
+engine_force = 3000.0
+use_as_traction = true
+use_as_steering = true
+wheel_rest_length = 0.029
 
-[node name="WheelFrontRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, -1.497)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isAcceleratable = true
+[node name="WheelFrontRight" parent="PlayerController" instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.636811, -1.497)
+engine_force = 3000.0
+use_as_traction = true
+use_as_steering = true
+wheel_rest_length = 0.029
 
-[node name="WheelBackLeft" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, 1.62242)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isTurnable = false
+[node name="WheelBackLeft" parent="PlayerController" instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.636894, 1.62242)
+wheel_rest_length = 0.029
 
-[node name="WheelBackRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, 1.62233)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isTurnable = false
-
-[node name="RightFrontWheel" type="CSGCylinder3D" parent="PlayerController"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.156, 0.614, -1.497)
-visible = false
-radius = 0.601563
-height = 0.362503
-sides = 16
-
-[node name="ControlArmFront" type="CSGBox3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.78065)
-visible = false
-material_override = SubResource("StandardMaterial3D_jnlp7")
-size = Vector3(3, 1, 1)
-
-[node name="ControlArmBack" type="CSGBox3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.78964)
-visible = false
-size = Vector3(3, 1, 1)
+[node name="WheelBackRight" parent="PlayerController" instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.636811, 1.62233)
+wheel_rest_length = 0.029
 
 [node name="CityBlock" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
