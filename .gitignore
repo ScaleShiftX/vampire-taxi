@@ -14,3 +14,17 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Builds
+build/
+
+# Visual Studio user files
+.vs/
+*.suo
+*.vsidx
+*.user
+*.VC.db
+*.vscode/
+*.dbmdl
+*.json.backup
+
