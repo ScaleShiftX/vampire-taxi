@@ -55,11 +55,25 @@ visible = false
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, -1.49691)
 _playerController = NodePath("..")
 _cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
+_isAcceleratable = true
 
 [node name="WheelFrontRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, -1.497)
 _playerController = NodePath("..")
 _cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
+_isAcceleratable = true
+
+[node name="WheelBackLeft" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, 1.62242)
+_playerController = NodePath("..")
+_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
+_isTurnable = false
+
+[node name="WheelBackRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, 1.62233)
+_playerController = NodePath("..")
+_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
+_isTurnable = false
 
 [node name="RightFrontWheel" type="CSGCylinder3D" parent="PlayerController"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.156, 0.614, -1.497)

@@ -9,6 +9,7 @@ public partial class Wheel : RigidBody3D
 
     [ExportCategory("Movement")]
     [Export] private bool _isTurnable = false;
+    [Export] private bool _isAcceleratable = false;
 
     public override void _IntegrateForces(PhysicsDirectBodyState3D state)
     {
@@ -24,7 +25,7 @@ public partial class Wheel : RigidBody3D
     public override void _PhysicsProcess(double delta)
     {
         //Accelerate
-        if (Input.IsActionPressed("thrust_dir_forward"))
+        if (_isAcceleratable && Input.IsActionPressed("thrust_dir_forward"))
         {
             ApplyTorque(GlobalBasis.X * _playerController.AccelerationDPS2);
         }
