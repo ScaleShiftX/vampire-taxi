@@ -4,14 +4,11 @@ using System;
 public partial class Wheel : RigidBody3D
 {
     [ExportCategory("External")]
-    [Export] private Node3D _playerRoot;
+    [Export] private PlayerController _playerController;
     [Export] private Camera3D _cameraPlayer;
 
     [ExportCategory("Movement")]
     [Export] private bool _isTurnable = false;
-    [Export] private float _accelerationDPS2 = 1f;
-    [Export] private float _turnRate = 6f;
-    [Export] private float _angularVelocityLinearInterpolationWeight = 0.2f;
 
     public override void _IntegrateForces(PhysicsDirectBodyState3D state)
     {
@@ -22,19 +19,22 @@ public partial class Wheel : RigidBody3D
         {
             Turn(state);
         }
+    }
 
+    public override void _PhysicsProcess(double delta)
+    {
         //Accelerate
         if (Input.IsActionPressed("thrust_dir_forward"))
         {
-            ApplyTorque(Vector3.Left * _accelerationDPS2);
+            ApplyTorque(GlobalBasis.X * _playerController.AccelerationDPS2);
         }
     }
 
     private void Turn(PhysicsDirectBodyState3D state)
     {
-        Vector3 targetPosition = new Vector3(_cameraPlayer.GlobalPosition.X, _playerRoot.GlobalPosition.Y, _cameraPlayer.GlobalPosition.Z);
+        Vector3 targetPosition = new Vector3(_cameraPlayer.GlobalPosition.X, _playerController.GlobalPosition.Y, _cameraPlayer.GlobalPosition.Z);
         
-        Vector3 direction = (targetPosition - _playerRoot.GlobalPosition).Normalized();
+        Vector3 direction = (targetPosition - _playerController.GlobalPosition).Normalized();
         if (direction.LengthSquared() < 1e-6f) return; //distance too small to matter
 
         Vector3 forward = -GlobalBasis.Z;
@@ -45,8 +45,8 @@ public partial class Wheel : RigidBody3D
         if (angle < 1e-4f || axis.LengthSquared() < 1e-8f) return; //already aligned; also avoids NaN errors with axis
         axis = axis.Normalized();
 
-        Vector3 desiredAV = axis * (angle * _turnRate);
+        Vector3 desiredAV = axis * (angle * _playerController.TurnRate);
 
-        state.AngularVelocity = state.AngularVelocity.Lerp(desiredAV, _angularVelocityLinearInterpolationWeight);
+        state.AngularVelocity = state.AngularVelocity.Lerp(desiredAV, _playerController.AngularVelocityLinearInterpolationWeight);
     }
 }
