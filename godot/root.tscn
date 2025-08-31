@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://bbs6egjvjhfx4"]
+[gd_scene load_steps=2 format=3 uid="uid://bbs6egjvjhfx4"]
+
+[ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/taxi.blend" id="1_pq8q7"]
 
 [node name="Root" type="Node3D"]
+
+[node name="taxi" parent="." instance=ExtResource("1_pq8q7")]
