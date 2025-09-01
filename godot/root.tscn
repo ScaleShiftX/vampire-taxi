@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbs6egjvjhfx4"]
+[gd_scene load_steps=13 format=3 uid="uid://bbs6egjvjhfx4"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/taxi.blend" id="1_pq8q7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="3_28aoi"]
 [ext_resource type="PackedScene" uid="uid://42vsedxe70u8" path="res://taxi/taxi_body.blend" id="5_vyht1"]
 [ext_resource type="PackedScene" uid="uid://cdtqweudkqgyj" path="res://taxi/wheel.tscn" id="6_vyht1"]
+[ext_resource type="PackedScene" uid="uid://cmxjathhww2yu" path="res://taxi/Taxi2.blend" id="8_bf3um"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jnlp7"]
 
@@ -101,3 +102,6 @@ size = Vector3(200, 1, 100)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.381216, 0.924486, 0, -0.924486, -0.381216, 0, 29.5703, 0)
+
+[node name="Taxi2" parent="." instance=ExtResource("8_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47901, 1.00705, -1.01631)
