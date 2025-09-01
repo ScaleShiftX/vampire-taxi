@@ -1,6 +1,6 @@
 SCALESHIFT
 Fucking do everything
-Character controller
+Character controller - specifically next: connect the wheels to the chasis
 Pedestrians
 NPC cars
 Cop cars
@@ -19,3 +19,7 @@ Make each wheel:
 - and their forward vectors in the direction of travel
 
 Add fangs to taxi
+
+Model pedestrians
+
+Come up with some upgrades (which can double as variation for NPC cars). Ex: gold spinning rims, cop car stuff
