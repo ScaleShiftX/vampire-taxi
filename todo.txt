@@ -23,3 +23,9 @@ Add fangs to taxi
 Model pedestrians
 
 Come up with some upgrades (which can double as variation for NPC cars). Ex: gold spinning rims, cop car stuff
+
+
+200m north/south road
+100m east/west road
+100m alleyway east-west road
+4-way intersections
