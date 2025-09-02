@@ -3,32 +3,33 @@ using System;
 
 public partial class Wheel : RigidBody3D
 {
+    [ExportCategory("Diagnostics")]
+    [Export] private bool _isPrint = false;
+
     [ExportCategory("External")]
     [Export] private PlayerController _playerController;
     [Export] private Camera3D _cameraPlayer;
 
     [ExportCategory("Movement")]
-    [Export] private bool _isTurnable = false;
-    [Export] private bool _isAcceleratable = false;
-
-    public override void _IntegrateForces(PhysicsDirectBodyState3D state)
-    {
-        float delta = state.Step;
-
-        ////Turn
-        //if (_isTurnable)
-        //{
-        //    //Y axis (up axis, to yaw): use car's local Y
-        //
-        //    //Turn(state);
-        //    //ApplyTorque(Basis.Y * 2f);
-        //}
-    }
+    [Export] private bool _isTurn = false;
+    [Export] private bool _isPropel = false;
 
     public override void _PhysicsProcess(double delta)
     {
-        //Turn
-        if (_isTurnable)
+        //Interpret the positional difference between this wheel and the player controller
+        //as a force pushing the player controller in that direction
+        //and reset the position of the wheel to snap directly to the car again
+        if (_isPrint) GD.Print(Position);
+        //Position = Vector3.Zero;
+
+        //New stuff
+        Turn();
+        Propel();
+    }
+
+    private void Turn()
+    {
+        if (_isTurn)
         {
             //Y axis (up axis, to yaw): use car's local Y
             //ApplyTorque(_playerController.GlobalBasis.Y * _playerController.TurnMagNm);
@@ -46,9 +47,11 @@ public partial class Wheel : RigidBody3D
             //Torque in that direction
             ApplyTorque(axis * angle * _playerController.TurnMagNm);
         }
+    }
 
-        //Propel
-        if (_isAcceleratable && Input.IsActionPressed("thrust_dir_forward"))
+    private void Propel()
+    {
+        if (_isPropel && Input.IsActionPressed("thrust_dir_forward"))
         {
             //X axis (right axis, to propel): use wheel's local X
             ApplyTorque(GlobalBasis.X * _playerController.PropelMagNm);

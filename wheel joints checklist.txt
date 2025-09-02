@@ -1,0 +1,21 @@
+The chassis, wheel, and joint are all separate (none are children)
+
+The joint is positioned at the attachment point between the chassis and the wheel
+
+Linear limits are ALL enabled (0 to 0 except for Y which is 0.2 to -0.4)
+
+Linear motors are ALL off
+
+Linear springs are off except for the Y spring which is on to act as suspension travel
+
+Angular limits are all on except for X. Presumably X can rotate totally freely (axle), Y is limited (30 to -30 steering) so the wheel can't turn inwards or outwards too far, and Z is entirely limited (0 to 0) to prevent camber.
+
+Angular motors are all off except for Y, though I'm unsure of what that does.
+
+Angular springs are all off
+
+Node A is the chassis
+Node B is the wheel
+Collision between nodes is excluded
+
+Joint's basis must match chassis and wheel bases (best to have them all world-aligned)

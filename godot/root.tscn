@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbs6egjvjhfx4"]
+[gd_scene load_steps=11 format=3 uid="uid://bbs6egjvjhfx4"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/taxi.blend" id="1_pq8q7"]
@@ -13,9 +13,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_pyidc"]
 size = Vector3(2.53418, 1.72984, 4.57959)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnlp7"]
-albedo_texture = ExtResource("2_pyidc")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvh5c"]
 albedo_texture = ExtResource("2_pyidc")
 
@@ -25,74 +22,103 @@ albedo_texture = ExtResource("2_pyidc")
 visible = false
 script = ExtResource("1_jnlp7")
 
-[node name="PlayerController" type="RigidBody3D" parent="."]
+[node name="Chassis" type="RigidBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_jnlp7")
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("1_vvh5c")
 _blend = ExtResource("1_pq8q7")
-PropelMagNm = 30.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.105, 0.006)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04791, 0.006)
 shape = SubResource("BoxShape3D_pyidc")
 
-[node name="CameraPivot" type="Node3D" parent="PlayerController"]
+[node name="CameraPivot" type="Node3D" parent="Chassis"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62777, 0)
 
-[node name="CameraPlayer" type="Camera3D" parent="PlayerController/CameraPivot" node_paths=PackedStringArray("_pivot")]
+[node name="CameraPlayer" type="Camera3D" parent="Chassis/CameraPivot" node_paths=PackedStringArray("_pivot")]
 transform = Transform3D(1, 0, 0, 0, 0.904515, 0.426442, 0, -0.426442, 0.904515, 0, 2.06189, 4.72768)
 script = ExtResource("3_28aoi")
 _pivot = NodePath("..")
 
-[node name="taxi_body" parent="PlayerController" instance=ExtResource("5_vyht1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.023, 0)
+[node name="taxi_body" parent="Chassis" instance=ExtResource("5_vyht1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.96591, 0)
 
-[node name="taxi" parent="PlayerController" instance=ExtResource("1_pq8q7")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.023, 0)
+[node name="taxi" parent="Chassis" instance=ExtResource("1_pq8q7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.96591, 0)
 visible = false
 
-[node name="WheelFrontLeft" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+[node name="JointWheelFrontLeft" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.962525, 0.614083, -1.49691)
+node_a = NodePath("../Chassis")
+node_b = NodePath("../WheelFrontLeft")
+linear_limit_y/upper_distance = 0.2
+linear_limit_y/lower_distance = -0.4
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
+angular_limit_x/enabled = false
+angular_limit_y/upper_angle = 0.523599
+angular_limit_y/lower_angle = -0.523599
+
+[node name="WheelFrontLeft" parent="." node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, -1.49691)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isAcceleratable = true
+_playerController = NodePath("../Chassis")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
+_isTurn = true
+_isPropel = true
 
-[node name="WheelFrontRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+[node name="JointWheelFrontRight" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.963, 0.614, -1.497)
+node_a = NodePath("../Chassis")
+node_b = NodePath("../WheelFrontRight")
+linear_limit_y/upper_distance = 0.2
+linear_limit_y/lower_distance = -0.4
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
+angular_limit_x/enabled = false
+angular_limit_y/upper_angle = 0.523599
+angular_limit_y/lower_angle = -0.523599
+
+[node name="WheelFrontRight" parent="." node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, -1.497)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isAcceleratable = true
+_playerController = NodePath("../Chassis")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
+_isTurn = true
+_isPropel = true
 
-[node name="WheelBackLeft" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+[node name="JointWheelBackLeft" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.963, 0.614, 1.622)
+node_a = NodePath("../Chassis")
+node_b = NodePath("../WheelBackLeft")
+linear_limit_y/upper_distance = 0.2
+linear_limit_y/lower_distance = -0.4
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
+angular_limit_x/enabled = false
+
+[node name="WheelBackLeft" parent="." node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.15582, 0.614083, 1.62242)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isTurnable = false
+_playerController = NodePath("../Chassis")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
-[node name="WheelBackRight" parent="PlayerController" node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
+[node name="JointWheelBackRight" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.963, 0.614, 1.622)
+node_a = NodePath("../Chassis")
+node_b = NodePath("../WheelBackRight")
+linear_limit_y/upper_distance = 0.2
+linear_limit_y/lower_distance = -0.4
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
+angular_limit_x/enabled = false
+
+[node name="WheelBackRight" parent="." node_paths=PackedStringArray("_playerController", "_cameraPlayer") instance=ExtResource("6_vyht1")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.156, 0.614, 1.62233)
-_playerController = NodePath("..")
-_cameraPlayer = NodePath("../CameraPivot/CameraPlayer")
-_isTurnable = false
-
-[node name="RightFrontWheel" type="CSGCylinder3D" parent="PlayerController"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.156, 0.614, -1.497)
-visible = false
-radius = 0.601563
-height = 0.362503
-sides = 16
-
-[node name="ControlArmFront" type="CSGBox3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1.78065)
-visible = false
-material_override = SubResource("StandardMaterial3D_jnlp7")
-size = Vector3(3, 1, 1)
-
-[node name="ControlArmBack" type="CSGBox3D" parent="PlayerController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.78964)
-visible = false
-size = Vector3(3, 1, 1)
+_playerController = NodePath("../Chassis")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
 [node name="CityBlock" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
