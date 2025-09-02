@@ -8,9 +8,8 @@ public partial class PlayerController : RigidBody3D
     private Node3D _blendInstance;
 
     [ExportCategory("Movement")]
-    [Export] public float AccelerationDPS2 = 3000f;
-    [Export] public float TurnRate = 6f;
-    [Export] public float AngularVelocityLinearInterpolationWeight = 0.2f;
+    [Export] public float PropelMagNm = 30f;
+    [Export] public float TurnMagNm = 3f;
 
     public override void _Ready()
     {

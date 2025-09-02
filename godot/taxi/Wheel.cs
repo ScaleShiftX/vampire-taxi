@@ -15,39 +15,43 @@ public partial class Wheel : RigidBody3D
     {
         float delta = state.Step;
 
-        //Turn
-        if (_isTurnable)
-        {
-            Turn(state);
-        }
+        ////Turn
+        //if (_isTurnable)
+        //{
+        //    //Y axis (up axis, to yaw): use car's local Y
+        //
+        //    //Turn(state);
+        //    //ApplyTorque(Basis.Y * 2f);
+        //}
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        //Accelerate
+        //Turn
+        if (_isTurnable)
+        {
+            //Y axis (up axis, to yaw): use car's local Y
+            //ApplyTorque(_playerController.GlobalBasis.Y * _playerController.TurnMagNm);
+
+            //Forward axis
+            Vector3 forward = -GlobalBasis.Z;
+
+            //Direction to camera
+            Vector3 toCamera = (_cameraPlayer.GlobalPosition - GlobalPosition).Normalized();
+
+            //Axis to rotate around to move forward axis to point in the direction to the camera
+            Vector3 axis = forward.Cross(toCamera).Normalized();
+            float angle = Mathf.Acos(Mathf.Clamp(forward.Dot(toCamera), -1f, 1f));
+
+            //Torque in that direction
+            ApplyTorque(axis * angle * _playerController.TurnMagNm);
+        }
+
+        //Propel
         if (_isAcceleratable && Input.IsActionPressed("thrust_dir_forward"))
         {
-            ApplyTorque(GlobalBasis.X * _playerController.AccelerationDPS2);
+            //X axis (right axis, to propel): use wheel's local X
+            ApplyTorque(GlobalBasis.X * _playerController.PropelMagNm);
         }
-    }
-
-    private void Turn(PhysicsDirectBodyState3D state)
-    {
-        Vector3 targetPosition = new Vector3(_cameraPlayer.GlobalPosition.X, _playerController.GlobalPosition.Y, _cameraPlayer.GlobalPosition.Z);
-        
-        Vector3 direction = (targetPosition - _playerController.GlobalPosition).Normalized();
-        if (direction.LengthSquared() < 1e-6f) return; //distance too small to matter
-
-        Vector3 forward = -GlobalBasis.Z;
-
-        Vector3 axis = forward.Cross(direction);
-        float dot = forward.Dot(direction);
-        float angle = Mathf.Acos(dot);
-        if (angle < 1e-4f || axis.LengthSquared() < 1e-8f) return; //already aligned; also avoids NaN errors with axis
-        axis = axis.Normalized();
-
-        Vector3 desiredAV = axis * (angle * _playerController.TurnRate);
-
-        state.AngularVelocity = state.AngularVelocity.Lerp(desiredAV, _playerController.AngularVelocityLinearInterpolationWeight);
     }
 }
