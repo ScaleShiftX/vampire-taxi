@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata;
 
 public partial class Hub : RigidBody3D
 {
@@ -16,7 +17,9 @@ public partial class Hub : RigidBody3D
     {
         if (_isTurn)
         {
-            Turn();
+            TurnWithBinds();
+
+            //TurnWithCamera();
         }
 
         if (_isPropel && Input.IsActionPressed("thrust_dir_forward"))
@@ -25,7 +28,23 @@ public partial class Hub : RigidBody3D
         }
     }
 
-    private void Turn()
+    private void TurnWithBinds()
+    {
+        if (Input.IsActionPressed("turn_left") && Input.IsActionPressed("turn_right"))
+        {
+            return;
+        }
+        else if (Input.IsActionPressed("turn_left"))
+        {
+            ApplyTorque(-GlobalBasis.Y * _chassis.TurnMagNm);
+        }
+        else if (Input.IsActionPressed("turn_right"))
+        {
+            ApplyTorque(GlobalBasis.Y * _chassis.TurnMagNm);
+        }
+    }
+
+    private void TurnWithCamera()
     {
         //Y axis (up axis, to yaw): use car's local Y
         //ApplyTorque(_playerController.GlobalBasis.Y * _playerController.TurnMagNm);
