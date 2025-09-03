@@ -20,12 +20,12 @@ public partial class CameraPlayerController : Camera3D
 
             //Pitch, clamp to straight up or down
             _pivot.Rotation = new Vector3(
-                _pivot.Rotation.X,
-                _pivot.Rotation.Y,
-                Mathf.Clamp(_pivot.Rotation.Z + mouseMotion.Relative.Y * _mouseSensitivity,
+                Mathf.Clamp(_pivot.Rotation.X - mouseMotion.Relative.Y * _mouseSensitivity,
                     -0.24f * Mathf.Tau,
                     0.24f * Mathf.Tau
-                )
+                ),
+                _pivot.Rotation.Y,
+                _pivot.Rotation.Z
             );
         }
     }

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ccbf8ts8b40ta"
-path="res://.godot/imported/taxi_wheel.blend-7b8269ee1e036faaabaf743ab47a4208.scn"
+uid="uid://cmxjathhww2yu"
+path="res://.godot/imported/Taxi2.blend-345f20bd71de98774f8a43fce4005121.scn"
 
 [deps]
 
-source_file="res://taxi/taxi_wheel.blend"
-dest_files=["res://.godot/imported/taxi_wheel.blend-7b8269ee1e036faaabaf743ab47a4208.scn"]
+source_file="res://taxi/model/Taxi2.blend"
+dest_files=["res://.godot/imported/Taxi2.blend-345f20bd71de98774f8a43fce4005121.scn"]
 
 [params]
 

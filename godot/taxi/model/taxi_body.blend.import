@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://42vsedxe70u8"
-path="res://.godot/imported/taxi_body.blend-e1da67ca2f53ac3d953f15f9301526eb.scn"
+path="res://.godot/imported/taxi_body.blend-f0b2d8dd1afe48b27f2828f684a5686d.scn"
 
 [deps]
 
-source_file="res://taxi/taxi_body.blend"
-dest_files=["res://.godot/imported/taxi_body.blend-e1da67ca2f53ac3d953f15f9301526eb.scn"]
+source_file="res://taxi/model/taxi_body.blend"
+dest_files=["res://.godot/imported/taxi_body.blend-f0b2d8dd1afe48b27f2828f684a5686d.scn"]
 
 [params]
 
