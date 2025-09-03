@@ -3,8 +3,9 @@ using System;
 
 public partial class Hub : RigidBody3D
 {
-    [ExportCategory("External")]
+    [ExportCategory("Nodes")]
     [Export] private Chassis _chassis;
+    [Export] private RigidBody3D _wheel;
     [Export] private Camera3D _cameraPlayer;
 
     [ExportCategory("Movement")]
@@ -45,20 +46,20 @@ public partial class Hub : RigidBody3D
 
     private void Propel()
     {
-        Vector3 axis = GlobalBasis.Z;
+        Vector3 axis = _wheel.GlobalBasis.Z;
         if (_chassis.AxisPropel == Chassis.Axis.X)
         {
-            axis = GlobalBasis.X;
+            axis = _wheel.GlobalBasis.X;
         }
         else if (_chassis.AxisPropel == Chassis.Axis.Y)
         {
-            axis = GlobalBasis.Y;
+            axis = _wheel.GlobalBasis.Y;
         }
         else if (_chassis.AxisPropel == Chassis.Axis.Z)
         {
-            axis = GlobalBasis.Z;
+            axis = _wheel.GlobalBasis.Z;
         }
 
-        ApplyTorque(axis * _chassis.PropelMagNm);
+        _wheel.ApplyTorque(axis * _chassis.PropelMagNm);
     }
 }
