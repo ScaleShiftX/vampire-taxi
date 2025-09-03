@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bld2stcjx6xi"]
+[gd_scene load_steps=14 format=3 uid="uid://bld2stcjx6xi"]
 
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://cj4bxksse3b80" path="res://taxi/Chassis.cs" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://yqlfejrae4wk" path="res://taxi/Wheel.cs" id="2_28aoi"]
+[ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_jnlp7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vho56"]
 size = Vector3(2.5, 1, 1)
@@ -38,6 +39,13 @@ albedo_texture = ExtResource("1_pq8q7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98647, 0)
 script = ExtResource("1_vvh5c")
 
+[node name="CameraPivot" type="Node3D" parent="Car/Chassis"]
+
+[node name="CameraPlayer" type="Camera3D" parent="Car/Chassis/CameraPivot" node_paths=PackedStringArray("_pivot")]
+transform = Transform3D(-4.37114e-08, -0.295708, 0.955278, 0, 0.955278, 0.295708, -1, 1.29258e-08, -4.17565e-08, 3.418, 2.005, 0)
+script = ExtResource("2_jnlp7")
+_pivot = NodePath("..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/Chassis"]
 shape = SubResource("BoxShape3D_vho56")
 
@@ -55,7 +63,7 @@ angular_limit_z/enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732304, 4.11207, 1.03383)
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
-_cameraPlayer = NodePath("../../CameraPlayer")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 _isPropel = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelFrontLeft"]
@@ -77,7 +85,7 @@ angular_limit_z/enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732, 4.112, -1.034)
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
-_cameraPlayer = NodePath("../../CameraPlayer")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 _isPropel = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelFrontRight"]
@@ -99,7 +107,7 @@ angular_limit_z/enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.11207, 1.03383)
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
-_cameraPlayer = NodePath("../../CameraPlayer")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelBackLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -120,7 +128,7 @@ angular_limit_z/enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.112, -1.034)
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
-_cameraPlayer = NodePath("../../CameraPlayer")
+_cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelBackRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -135,9 +143,6 @@ mesh = SubResource("CylinderMesh_vvh5c")
 material_override = SubResource("StandardMaterial3D_28aoi")
 use_collision = true
 size = Vector3(100, 1, 100)
-
-[node name="CameraPlayer" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.41814, 1.9011, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.621681, 0.78327, 0, -0.78327, 0.621681, 0, 8.36563, 1.25828)
