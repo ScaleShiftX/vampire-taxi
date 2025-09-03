@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Wheel : RigidBody3D
+public partial class Hub : RigidBody3D
 {
     [ExportCategory("External")]
     [Export] private Chassis _chassis;

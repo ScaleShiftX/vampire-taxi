@@ -1,14 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://bld2stcjx6xi"]
+[gd_scene load_steps=20 format=3 uid="uid://bld2stcjx6xi"]
 
+[ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://cj4bxksse3b80" path="res://taxi/Chassis.cs" id="1_vvh5c"]
-[ext_resource type="Script" uid="uid://yqlfejrae4wk" path="res://taxi/Wheel.cs" id="2_28aoi"]
+[ext_resource type="Script" uid="uid://yqlfejrae4wk" path="res://taxi/Hub.cs" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_jnlp7"]
+[ext_resource type="PackedScene" uid="uid://42vsedxe70u8" path="res://taxi/taxi_body.blend" id="4_l8v81"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vho56"]
 size = Vector3(2.5, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pq8q7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8v81"]
+friction = 0.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pyidc"]
 height = 0.75
@@ -19,11 +24,20 @@ albedo_texture = ExtResource("1_pq8q7")
 [sub_resource type="CylinderMesh" id="CylinderMesh_vvh5c"]
 height = 0.75
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vyht1"]
+friction = 0.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnlp7"]
 albedo_texture = ExtResource("1_pq8q7")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bf3um"]
+friction = 0.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8v81"]
 albedo_texture = ExtResource("1_pq8q7")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_huihk"]
+friction = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyht1"]
 albedo_texture = ExtResource("1_pq8q7")
@@ -33,16 +47,24 @@ albedo_texture = ExtResource("1_pq8q7")
 
 [node name="Root" type="Node3D"]
 
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jnlp7")
+
 [node name="Car" type="Node3D" parent="."]
 
 [node name="Chassis" type="RigidBody3D" parent="Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98647, 0)
+mass = 50.0
 script = ExtResource("1_vvh5c")
 
 [node name="CameraPivot" type="Node3D" parent="Car/Chassis"]
 
 [node name="CameraPlayer" type="Camera3D" parent="Car/Chassis/CameraPivot" node_paths=PackedStringArray("_pivot")]
-transform = Transform3D(-4.37114e-08, -0.295708, 0.955278, 0, 0.955278, 0.295708, -1, 1.29258e-08, -4.17565e-08, 3.418, 2.005, 0)
+transform = Transform3D(-4.37114e-08, -0.295708, 0.955278, 0, 0.955278, 0.295708, -1, 1.29258e-08, -4.17565e-08, 5.29157, 2.99961, 0)
 script = ExtResource("2_jnlp7")
 _pivot = NodePath("..")
 
@@ -51,90 +73,98 @@ shape = SubResource("BoxShape3D_vho56")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Car/Chassis"]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_pq8q7")
 
-[node name="WheelFrontLeftJoint" type="Generic6DOFJoint3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732, 4.112, 0.571)
-node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelFrontLeft")
-angular_limit_z/enabled = false
+[node name="taxi_body" parent="Car/Chassis" instance=ExtResource("4_l8v81")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="WheelFrontLeft" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732304, 4.11207, 1.03383)
+[node name="HubFrontLeftJoint" type="Generic6DOFJoint3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50281, 4.112, 1.0317)
+node_a = NodePath("../Chassis")
+node_b = NodePath("../HubFrontLeft")
+angular_limit_y/upper_angle = 0.523599
+angular_limit_y/lower_angle = -0.523599
+
+[node name="HubFrontLeft" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50311, 4.11207, 1.03383)
+physics_material_override = SubResource("PhysicsMaterial_l8v81")
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
 _cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 _isPropel = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelFrontLeft"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/HubFrontLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pyidc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelFrontLeft"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/HubFrontLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_vvh5c")
 mesh = SubResource("CylinderMesh_vvh5c")
 
-[node name="WheelFrontRightJoint" type="Generic6DOFJoint3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732, 4.112, -0.571)
+[node name="HubFrontRightJoint" type="Generic6DOFJoint3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.503, 4.112, -1.032)
 node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelFrontRight")
-angular_limit_z/enabled = false
+node_b = NodePath("../HubFrontRight")
+angular_limit_y/upper_angle = 0.523599
+angular_limit_y/lower_angle = -0.523599
 
-[node name="WheelFrontRight" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.732, 4.112, -1.034)
+[node name="HubFrontRight" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50281, 4.112, -1.034)
+physics_material_override = SubResource("PhysicsMaterial_vyht1")
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
 _cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 _isPropel = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelFrontRight"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/HubFrontRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pyidc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelFrontRight"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/HubFrontRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_jnlp7")
 mesh = SubResource("CylinderMesh_vvh5c")
 
-[node name="WheelBackLeftJoint" type="Generic6DOFJoint3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.112, 0.571)
+[node name="HubBackLeftJoint" type="Generic6DOFJoint3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61777, 4.112, 0.571)
 node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelBackLeft")
-angular_limit_z/enabled = false
+node_b = NodePath("../HubBackLeft")
 
-[node name="WheelBackLeft" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.11207, 1.03383)
+[node name="HubBackLeft" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61777, 4.11207, 1.03383)
+physics_material_override = SubResource("PhysicsMaterial_bf3um")
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
 _cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelBackLeft"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/HubBackLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pyidc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelBackLeft"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/HubBackLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_l8v81")
 mesh = SubResource("CylinderMesh_vvh5c")
 
-[node name="WheelBackRightJoint" type="Generic6DOFJoint3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.112, -0.571)
+[node name="HubBackRightJoint" type="Generic6DOFJoint3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61777, 4.112, -0.571)
 node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelBackRight")
-angular_limit_z/enabled = false
+node_b = NodePath("../HubBackRight")
 
-[node name="WheelBackRight" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.732, 4.112, -1.034)
+[node name="HubBackRight" type="RigidBody3D" parent="Car" node_paths=PackedStringArray("_chassis", "_cameraPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61777, 4.112, -1.034)
+physics_material_override = SubResource("PhysicsMaterial_huihk")
 script = ExtResource("2_28aoi")
 _chassis = NodePath("../Chassis")
 _cameraPlayer = NodePath("../Chassis/CameraPivot/CameraPlayer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/WheelBackRight"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/HubBackRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pyidc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelBackRight"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/HubBackRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_vyht1")
 mesh = SubResource("CylinderMesh_vvh5c")
