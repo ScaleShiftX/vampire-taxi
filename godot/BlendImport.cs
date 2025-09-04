@@ -5,11 +5,8 @@ using System.Collections.Generic;
 [Tool]
 public partial class BlendImport : Node
 {
-    [ExportToolButton("(Re)Import .blend", Icon = "PackedScene")]
-    public Callable ButtonImport => Callable.From(ImportBlendPreamble);
-
-    [ExportToolButton("Clear .blend", Icon = "PackedScene")]
-    public Callable ButtonClear => Callable.From(ClearBlend);
+    [ExportToolButton("(Re)Import .blend", Icon = "PackedScene")] public Callable ButtonImport => Callable.From(ImportBlendPreamble);
+    [ExportToolButton("Clear .blend", Icon = "PackedScene")] public Callable ButtonClear => Callable.From(ClearBlend);
 
     [Export] private bool _isGenerateChassisCollider = true;
 
@@ -290,12 +287,12 @@ public partial class BlendImport : Node
         _wheelFrontRight.Owner = sceneOwner;
         _wheelBackLeft.Owner = sceneOwner;
         _wheelBackRight.Owner = sceneOwner;
-        
+
         //Joints
-        _jointFrontLeft = new Generic6DofJoint3D()  { Name = "JointFrontLeft", NodeA = _chassis.GetPath(), NodeB = _wheelFrontLeft.GetPath() };
-        _jointFrontRight = new Generic6DofJoint3D() { Name = "JointFrontRight", NodeA = _chassis.GetPath(), NodeB = _wheelFrontRight.GetPath() };
-        _jointBackLeft = new Generic6DofJoint3D()   { Name = "JointBackLeft", NodeA = _chassis.GetPath(), NodeB = _wheelBackLeft.GetPath() };
-        _jointBackRight = new Generic6DofJoint3D()  { Name = "JointBackRight", NodeA = _chassis.GetPath(), NodeB = _wheelBackRight.GetPath() };
+        _jointFrontLeft = new Generic6DofJoint3D()  { Name = "JointFrontLeft" };
+        _jointFrontRight = new Generic6DofJoint3D() { Name = "JointFrontRight" };
+        _jointBackLeft = new Generic6DofJoint3D()   { Name = "JointBackLeft" };
+        _jointBackRight = new Generic6DofJoint3D()  { Name = "JointBackRight" };
         sceneOwner.AddChild(_jointFrontLeft);
         sceneOwner.AddChild(_jointFrontRight);
         sceneOwner.AddChild(_jointBackLeft);
@@ -308,12 +305,29 @@ public partial class BlendImport : Node
         _jointFrontRight.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
         _jointBackLeft.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
         _jointBackRight.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
+        SetupJointNodes(); //wait until joints are actually in the scene to setup the node references, and use GetPathTo()
 
         //Chassis script references
         _chassis.JointFrontLeft = _jointFrontLeft;
         _chassis.JointFrontRight = _jointFrontRight;
         _chassis.WheelFrontLeft = _wheelFrontLeft;
         _chassis.WheelFrontRight = _wheelFrontRight;
+    }
+
+    private void SetupJointNodes()
+    {
+        //Joints - we use GetPathTo() because GetPath() in-editor =/= GetPath() at runtime
+        _jointFrontLeft.NodeA = _jointFrontLeft.GetPathTo(_chassis);
+        _jointFrontLeft.NodeB = _jointFrontLeft.GetPathTo(_wheelFrontLeft);
+
+        _jointFrontRight.NodeA = _jointFrontRight.GetPathTo(_chassis);
+        _jointFrontRight.NodeB = _jointFrontRight.GetPathTo(_wheelFrontRight);
+
+        _jointBackLeft.NodeA = _jointBackLeft.GetPathTo(_chassis);
+        _jointBackLeft.NodeB = _jointBackLeft.GetPathTo(_wheelBackLeft);
+
+        _jointBackRight.NodeA = _jointBackRight.GetPathTo(_chassis);
+        _jointBackRight.NodeB = _jointBackRight.GetPathTo(_wheelBackRight);
     }
 
     private static void MakeOwnedRecursive(Node node, Node owner)

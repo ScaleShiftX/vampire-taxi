@@ -19,7 +19,7 @@ script = ExtResource("1_28aoi")
 [node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_cameraPivot")]
 script = ExtResource("2_l8v81")
 _blend = ExtResource("3_jnlp7")
-_cameraPivot = NodePath("../CameraPivot")
+_cameraPivot = NodePath("../CameraPlayerPivot")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -32,9 +32,9 @@ size = Vector3(100, 1, 100)
 [node name="Sun" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.54272, 0.839914, 0, -0.839914, 0.54272, 0, 3.71162, 0)
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPlayerPivot" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("_pivot")]
+[node name="CameraPlayer" type="Camera3D" parent="CameraPlayerPivot" node_paths=PackedStringArray("_pivot")]
 transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 3.26191, 5.35488)
 script = ExtResource("2_28aoi")
 _pivot = NodePath("..")
