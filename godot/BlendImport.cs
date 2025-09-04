@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Tool]
 public partial class BlendImport : Node
 {
-    [ExportToolButton("Import .blend", Icon = "PackedScene")]
+    [ExportToolButton("(Re)Import .blend", Icon = "PackedScene")]
     public Callable ButtonImport => Callable.From(ImportBlendPreamble);
 
     [ExportToolButton("Clear .blend", Icon = "PackedScene")]
@@ -33,6 +33,29 @@ public partial class BlendImport : Node
     private Generic6DofJoint3D _jointBackRight;
 
     private List<CollisionShape3D> _colliders = [];
+
+    [ExportCategory("Model Object Names")]
+    [Export] private string _wheelBackLeftName = "WheelBackLeft";
+    [Export] private string _alwaysBLName = "AlwaysBL";
+    [Export] private string _upgrade0BLName = "Upgrade0BL";
+
+    [Export] private string _wheelBackRightName = "WheelBackRight";
+    [Export] private string _alwaysBRName = "AlwaysBR";
+    [Export] private string _upgrade0BRName = "Upgrade0BR";
+
+    [Export] private string _wheelFrontLeftName = "WheelFrontLeft";
+    [Export] private string _alwaysFLName = "AlwaysFL";
+    [Export] private string _upgrade0FLName = "Upgrade0FL";
+
+    [Export] private string _wheelFrontRightName = "WheelFrontRight";
+    [Export] private string _alwaysFRName = "AlwaysFR";
+    [Export] private string _upgrade0FRName = "Upgrade0FR";
+
+    [Export] private string _chassisName = "car_body";
+    [Export] private string _tireBLName = "tire_bl";
+    [Export] private string _tireBRName = "tire_br";
+    [Export] private string _tireFLName = "tire_fl";
+    [Export] private string _tireFRName = "tire_fr";
 
     private async void ImportBlendPreamble()
     {
@@ -92,28 +115,28 @@ public partial class BlendImport : Node
         {
             if (node is Node3D node3D)
             {
-                if (node.Name == "car_body")
+                if (node.Name == _chassisName)
                 {
                     chassisMesh = node as MeshInstance3D;
                 }
-                else if (node.Name == "tire_bl")
+                else if (node.Name == _tireBLName)
                 {
                     tireMesh = node as MeshInstance3D;
         
                     _wheelBackLeft.GlobalPosition = node3D.GlobalPosition;
                     _jointBackLeft.GlobalPosition = node3D.GlobalPosition;
                 }
-                else if (node.Name == "tire_br")
+                else if (node.Name == _tireBRName)
                 {
                     _wheelBackRight.GlobalPosition = node3D.GlobalPosition;
                     _jointBackRight.GlobalPosition = node3D.GlobalPosition;
                 }
-                else if (node.Name == "tire_fl")
+                else if (node.Name == _tireFLName)
                 {
                     _wheelFrontLeft.GlobalPosition = node3D.GlobalPosition;
                     _jointFrontLeft.GlobalPosition = node3D.GlobalPosition;
                 }
-                else if (node.Name == "tire_fr")
+                else if (node.Name == _tireFRName)
                 {
                     _wheelFrontRight.GlobalPosition = node3D.GlobalPosition;
                     _jointFrontRight.GlobalPosition = node3D.GlobalPosition;
@@ -141,28 +164,28 @@ public partial class BlendImport : Node
                     //Can't use CreateTrimeshCollision() because it creates a concave collider
                 }
             }
-            else if (node.Name == "WheelBackLeft")
+            else if (node.Name == _wheelBackLeftName)
             {
                 CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelBackLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
-            else if (node.Name == "WheelBackRight")
+            else if (node.Name == _wheelBackRightName)
             {
                 CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelBackRight.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
-            else if (node.Name == "WheelFrontLeft")
+            else if (node.Name == _wheelFrontLeftName)
             {
                 CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelFrontLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
-            else if (node.Name == "WheelFrontRight")
+            else if (node.Name == _wheelFrontRightName)
             {
                 CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelFrontRight.AddChild(collider);
@@ -179,22 +202,22 @@ public partial class BlendImport : Node
                 node.Reparent(_chassis);
                 MakeOwnedRecursive(node, sceneOwner);
             }
-            else if (node.Name == "WheelBackLeft")
+            else if (node.Name == _wheelBackLeftName)
             {
                 node.Reparent(_wheelBackLeft);
                 MakeOwnedRecursive(node, sceneOwner);
             }
-            else if (node.Name == "WheelBackRight")
+            else if (node.Name == _wheelBackRightName)
             {
                 node.Reparent(_wheelBackRight);
                 MakeOwnedRecursive(node, sceneOwner);
             }
-            else if (node.Name == "WheelFrontLeft")
+            else if (node.Name == _wheelFrontLeftName)
             {
                 node.Reparent(_wheelFrontLeft);
                 MakeOwnedRecursive(node, sceneOwner);
             }
-            else if (node.Name == "WheelFrontRight")
+            else if (node.Name == _wheelFrontRightName)
             {
                 node.Reparent(_wheelFrontRight);
                 MakeOwnedRecursive(node, sceneOwner);
@@ -208,28 +231,28 @@ public partial class BlendImport : Node
             {
                 if (
                     (
-                        node.GetParent().Name ==    "WheelBackLeft"
-                        && node.Name !=             "WheelBackLeft"
-                        && node.Name !=             "AlwaysBL"
-                        && node.Name !=             "Upgrade0BL"
+                        node.GetParent().Name ==    _wheelBackLeftName
+                        && node.Name !=             _wheelBackLeftName
+                        && node.Name !=             _alwaysBLName
+                        && node.Name !=             _upgrade0BLName
                     )
                     || (
-                        node.GetParent().Name ==    "WheelBackRight"
-                        && node.Name !=             "WheelBackRight"
-                        && node.Name !=             "AlwaysBR"
-                        && node.Name !=             "Upgrade0BR"
+                        node.GetParent().Name ==    _wheelBackRightName
+                        && node.Name !=             _wheelBackRightName
+                        && node.Name !=             _alwaysBRName
+                        && node.Name !=             _upgrade0BRName
                     )
                     || (
-                        node.GetParent().Name ==    "WheelFrontLeft"
-                        && node.Name !=             "WheelFrontLeft"
-                        && node.Name !=             "AlwaysFL"
-                        && node.Name !=             "Upgrade0FL"
+                        node.GetParent().Name ==    _wheelFrontLeftName
+                        && node.Name !=             _wheelFrontLeftName
+                        && node.Name !=             _alwaysFLName
+                        && node.Name !=             _upgrade0FLName
                     )
                     || (
-                        node.GetParent().Name ==    "WheelFrontRight"
-                        && node.Name !=             "WheelFrontRight"
-                        && node.Name !=             "AlwaysFR"
-                        && node.Name !=             "Upgrade0FR"
+                        node.GetParent().Name ==    _wheelFrontRightName
+                        && node.Name !=             _wheelFrontRightName
+                        && node.Name !=             _alwaysFRName
+                        && node.Name !=             _upgrade0FRName
                     )
                 )
                 {
