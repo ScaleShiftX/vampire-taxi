@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=7 format=3 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
-[ext_resource type="Script" uid="uid://cub32ctiqxucu" path="res://taxi/Chassis.cs" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://dd1bavnxddw85" path="res://BlendImport.cs" id="2_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/model/taxi.blend" id="3_jnlp7"]
@@ -17,16 +16,15 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_28aoi")
 
-[node name="BlendImport" type="Node" parent="."]
+[node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_cameraPivot")]
 script = ExtResource("2_l8v81")
 _blend = ExtResource("3_jnlp7")
-_chassisScript = ExtResource("1_vvh5c")
+_cameraPivot = NodePath("../CameraPivot")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.394745, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("_pivot")]
-transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 2.12839, 3.51943)
+transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 3.26191, 5.35488)
 script = ExtResource("2_28aoi")
 _pivot = NodePath("..")
 

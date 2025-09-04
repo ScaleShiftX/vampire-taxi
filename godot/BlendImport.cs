@@ -5,9 +5,6 @@ using System.Collections.Generic;
 [Tool]
 public partial class BlendImport : Node
 {
-    private bool _isImported = false;
-    private List<Node> _blendNodes;
-
     [ExportToolButton("Import .blend", Icon = "PackedScene")]
     public Callable ButtonImport => Callable.From(ImportBlendPreamble);
 
@@ -16,12 +13,12 @@ public partial class BlendImport : Node
 
     [Export] private bool _isGenerateChassisCollider = true;
 
-    [Export] private PackedScene _blend;
-    private Node3D _blendInstance;
+    private bool _isImported = false;
 
-    [Export] private Script _chassisScript;
-    
-    private List<CollisionShape3D> _colliders = [];
+    [Export] private PackedScene _blend;
+    private List<Node> _blendNodes;
+
+    [Export] Node3D _cameraPivot;
 
     private Chassis _chassis;
 
@@ -34,6 +31,8 @@ public partial class BlendImport : Node
     private Generic6DofJoint3D _jointFrontRight;
     private Generic6DofJoint3D _jointBackLeft;
     private Generic6DofJoint3D _jointBackRight;
+
+    private List<CollisionShape3D> _colliders = [];
 
     private async void ImportBlendPreamble()
     {
@@ -68,8 +67,12 @@ public partial class BlendImport : Node
         //Add and set up rigidbodies and joints
         AddPhysicsNodes(sceneOwner);
 
+        //Reparent player camera
+        _cameraPivot.GlobalPosition = _chassis.GlobalPosition;
+        _cameraPivot.Reparent(_chassis);
+
         //GET INTO SCENE TREE
-        _blendInstance = (Node3D)_blend.Instantiate();
+        Node3D _blendInstance = (Node3D)_blend.Instantiate();
         sceneOwner.AddChild(_blendInstance);
         
         //Position
@@ -82,7 +85,7 @@ public partial class BlendImport : Node
         _blendNodes = GetAllChildren(_blendInstance);
         
         //Move wheel rigidbodies+joints into position
-        //Add save the tire mesh for generating colliders later
+        //Add save the chassis and tire mesh for generating colliders later
         MeshInstance3D chassisMesh = null;
         MeshInstance3D tireMesh = null;
         foreach (var node in _blendNodes)
@@ -136,16 +139,6 @@ public partial class BlendImport : Node
                     _colliders.Add(collider);
         
                     //Can't use CreateTrimeshCollision() because it creates a concave collider
-                    //
-                    //which doesn't work will with rigidbodies
-                    ////Generate the trimesh collision shape
-                    //chassisMesh.CreateTrimeshCollision();
-                    //
-                    ////Remove the static body that CreateTrimeshCollision() creates
-                    //Node collisionShape = chassisMesh.GetChild(0).GetChild(0);
-                    //chassisMesh.GetChild(0).RemoveChild(collisionShape);
-                    //chassisMesh.AddChild(collisionShape);
-                    //chassisMesh.GetChild(0).QueueFree();
                 }
             }
             else if (node.Name == "WheelBackLeft")
@@ -328,15 +321,7 @@ public partial class BlendImport : Node
 
     private static CollisionShape3D CreateWheelCollider(MeshInstance3D  tireMesh)
     {
-        //return new CollisionShape3D()
-        //{
-        //    Shape = new CylinderShape3D
-        //    {
-        //        Height = 0.37f,
-        //        Radius = 0.601f
-        //    },
-        //    RotationDegrees = new Vector3(0f, 0f, 90f)
-        //};
+        //This is actual voodoo magic
 
         //1.) Get the mesh AABB in mesh-local space
         var aabbLocal = tireMesh.Mesh.GetAabb();
@@ -400,6 +385,10 @@ public partial class BlendImport : Node
             //Flag
             _isImported = false;
 
+            //Save camera
+            _cameraPivot.Reparent(GetTree().EditedSceneRoot);
+            _cameraPivot.Owner = GetTree().EditedSceneRoot;
+
             //Physics nodes
             ClearPhysicsNodes();
 
@@ -411,28 +400,6 @@ public partial class BlendImport : Node
         {
             GD.Print("Nothing to clear!");
         }
-        
-        //if (_blendNodes != null)
-        //{
-        //    foreach (var node in _blendNodes)
-        //    {
-        //        if (node != null && IsInstanceValid(node) && !node.IsQueuedForDeletion())
-        //        {
-        //            node.QueueFree();
-        //        }
-        //    }
-        //    _blendNodes.Clear();
-        //}
-        //
-        ////Colliders
-        //foreach (var collider in _colliders)
-        //{
-        //    if (collider != null && IsInstanceValid(collider) && !collider.IsQueuedForDeletion())
-        //    {
-        //        collider.QueueFree();
-        //    }
-        //}
-        //_colliders.Clear();
     }
 
     private void ClearPhysicsNodes()
