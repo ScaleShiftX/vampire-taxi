@@ -14,6 +14,8 @@ public partial class BlendImport : Node
     [ExportToolButton("Clear .blend", Icon = "PackedScene")]
     public Callable ButtonClear => Callable.From(ClearBlend);
 
+    [Export] private bool _isGenerateChassisCollider = true;
+
     [Export] private PackedScene _blend;
     private Node3D _blendInstance;
 
@@ -67,15 +69,19 @@ public partial class BlendImport : Node
 
         //Move wheel rigidbodies+joints into position
         //Add save the tire mesh for generating colliders later
+        MeshInstance3D chassisMesh = null;
         MeshInstance3D tireMesh = null;
         foreach (var node in _blendNodes)
         {
             if (node is Node3D node3D)
             {
-                if (node.Name == "tire_bl")
+                if (node.Name == "car_body")
                 {
-                    MeshInstance3D mesh = node as MeshInstance3D;
-                    tireMesh = mesh;
+                    chassisMesh = node as MeshInstance3D;
+                }
+                else if (node.Name == "tire_bl")
+                {
+                    tireMesh = node as MeshInstance3D;
 
                     _wheelBackLeft.GlobalPosition = node3D.GlobalPosition;
                     _jointBackLeft.GlobalPosition = node3D.GlobalPosition;
@@ -101,7 +107,34 @@ public partial class BlendImport : Node
         //Generate colliders
         foreach (var node in _blendNodes)
         {
-            if (node.Name == "WheelBackLeft")
+            if (node.Name == "Chassis")
+            {
+                if (_isGenerateChassisCollider)
+                {
+                    CollisionShape3D collider = new()
+                    {
+                        Shape = chassisMesh.Mesh.CreateConvexShape(),
+                        RotationDegrees = new Vector3(0f, 180f, 0f)
+                    };
+
+                    _chassis.AddChild(collider);
+                    MakeOwnedRecursive(collider, sceneOwner);
+                    _colliders.Add(collider);
+
+                    //Can't use CreateTrimeshCollision() because it creates a concave collider
+                    //
+                    //which doesn't work will with rigidbodies
+                    ////Generate the trimesh collision shape
+                    //chassisMesh.CreateTrimeshCollision();
+                    //
+                    ////Remove the static body that CreateTrimeshCollision() creates
+                    //Node collisionShape = chassisMesh.GetChild(0).GetChild(0);
+                    //chassisMesh.GetChild(0).RemoveChild(collisionShape);
+                    //chassisMesh.AddChild(collisionShape);
+                    //chassisMesh.GetChild(0).QueueFree();
+                }
+            }
+            else if (node.Name == "WheelBackLeft")
             {
                 CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelBackLeft.AddChild(collider);

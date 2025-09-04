@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=9 format=3 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
@@ -6,12 +6,6 @@
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://dd1bavnxddw85" path="res://BlendImport.cs" id="2_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/model/taxi.blend" id="3_jnlp7"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_pyidc"]
-size = Vector3(1, 1, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vvh5c"]
-size = Vector3(2.53809, 2.43256, 4.56274)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pyidc"]
 friction = 100.0
@@ -50,18 +44,10 @@ _wheelFrontRight = NodePath("../WheelFrontRight")
 _wheelBackLeft = NodePath("../WheelBackLeft")
 _wheelBackRight = NodePath("../WheelBackRight")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Chassis"]
-visible = false
-mesh = SubResource("BoxMesh_pyidc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Chassis"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732391, 0)
-shape = SubResource("BoxShape3D_vvh5c")
-
 [node name="CameraPivot" type="Node3D" parent="Chassis"]
 
 [node name="Camera3D" type="Camera3D" parent="Chassis/CameraPivot" node_paths=PackedStringArray("_pivot")]
-transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 1.29562, 2.22577)
+transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 2.12839, 3.51943)
 script = ExtResource("2_28aoi")
 _pivot = NodePath("..")
 
@@ -109,11 +95,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15326, -0.0121704, 1.05285)
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_pyidc")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.81112, 0)
 material_override = SubResource("StandardMaterial3D_l8v81")
 use_collision = true
 size = Vector3(100, 1, 100)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.54272, 0.839914, 0, -0.839914, 0.54272, 0, 3.71162, 0)
