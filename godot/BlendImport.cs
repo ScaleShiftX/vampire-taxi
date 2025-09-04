@@ -5,17 +5,19 @@ using System.Collections.Generic;
 [Tool]
 public partial class BlendImport : Node
 {
-    [ExportToolButton("Import .blend", Icon = "PackedScene")]
-    public Callable ClickMeButton => Callable.From(() =>
-    {
-        CallDeferred(nameof(RunImportDeferred));
+    private bool _isImported = false;
+    private List<Node> _blendNodes;
 
-        //Reset so it behaves like a button
-        SetDeferred(nameof(Action), 0); //0 == None
-    });
+    [ExportToolButton("Import .blend", Icon = "PackedScene")]
+    public Callable ButtonImport => Callable.From(() => {CallDeferred(nameof(ImportBlend));});
+
+    [ExportToolButton("Clear .blend", Icon = "PackedScene")]
+    public Callable ButtonClear => Callable.From(ClearBlend);
 
     [Export] private PackedScene _blend;
     private Node3D _blendInstance;
+
+    private List<CollisionShape3D> _colliders = [];
 
     [Export] private RigidBody3D _chassis;
 
@@ -28,37 +30,43 @@ public partial class BlendImport : Node
     [Export] private Generic6DofJoint3D _jointFrontRight;
     [Export] private Generic6DofJoint3D _jointBackLeft;
     [Export] private Generic6DofJoint3D _jointBackRight;
-    
-    private void RunImportDeferred()
+
+    private void ImportBlend()
     {
-        var sceneRoot = GetTree().EditedSceneRoot;
-        if (sceneRoot == null)
+        GD.Print("ImportBlend()");
+
+        //Get owner
+        var sceneOwner = GetTree().EditedSceneRoot;
+        if (sceneOwner == null)
         {
             GD.PushError("No EditedSceneRoot yet. Open a scene and select a node in it.");
             return;
         }
 
-        ImportBlend(sceneRoot);
-    }
+        //Clear previous blend
+        if (_isImported)
+        {
+            ClearBlend();
+        }
 
-    private void ImportBlend(Node sceneOwner)
-    {
-        GD.Print("ImportBlend()");
+        //Flag
+        _isImported = true;
 
         //GET INTO SCENE TREE
         _blendInstance = (Node3D)_blend.Instantiate();
-
-        _blendInstance.GlobalPosition = _chassis.GlobalPosition;
         sceneOwner.AddChild(_blendInstance);
+
+        //Position
+        _blendInstance.GlobalPosition = _chassis.GlobalPosition;
 
         //Place the whole subtree in the scene tree
         MakeOwnedRecursive(_blendInstance, sceneOwner);
 
         //Get a list of every node
-        List<Node> blendNodes = GetAllChildren(_blendInstance);
+        _blendNodes = GetAllChildren(_blendInstance);
 
         //Move wheel rigidbodies+joints into position
-        foreach (var node in blendNodes)
+        foreach (var node in _blendNodes)
         {
             if (node is Node3D node3D)
             {
@@ -86,36 +94,40 @@ public partial class BlendImport : Node
         }
 
         //Generate colliders
-        foreach (var node in blendNodes)
+        foreach (var node in _blendNodes)
         {
             if (node.Name == "WheelBackLeft")
             {
                 CollisionShape3D collider = CreateWheelCollider();
                 _wheelBackLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
+                _colliders.Add(collider);
             }
             else if (node.Name == "WheelBackRight")
             {
                 CollisionShape3D collider = CreateWheelCollider();
                 _wheelBackRight.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
+                _colliders.Add(collider);
             }
             else if (node.Name == "WheelFrontLeft")
             {
                 CollisionShape3D collider = CreateWheelCollider();
                 _wheelFrontLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
+                _colliders.Add(collider);
             }
             else if (node.Name == "WheelFrontRight")
             {
                 CollisionShape3D collider = CreateWheelCollider();
                 _wheelFrontRight.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
+                _colliders.Add(collider);
             }
         }
 
         //Set all models to be children of their respective rigidbodies
-        foreach (var node in blendNodes)
+        foreach (var node in _blendNodes)
         {
             if (node.Name == "Chassis")
             {
@@ -145,7 +157,7 @@ public partial class BlendImport : Node
         }
 
         //Hide locked upgrades
-        foreach (var node in blendNodes)
+        foreach (var node in _blendNodes)
         {
             if (node is Node3D node3D)
             {
@@ -180,6 +192,14 @@ public partial class BlendImport : Node
                 }
             }
         }
+
+        //Delete the original parent (now empty)
+        _blendInstance.QueueFree();
+        _blendInstance = null;
+        //Have to do some weird stuff
+        //I think because it's an inherited packed scene so there's some hidden stuff inside it still
+        //We'll be tolerant of this in the ClearBlend() method
+        _blendNodes.RemoveAll(node => node == null || !GodotObject.IsInstanceValid(node) || node.IsQueuedForDeletion());
     }
 
     private static void MakeOwnedRecursive(Node node, Node owner)
@@ -219,5 +239,34 @@ public partial class BlendImport : Node
             },
             RotationDegrees = new Vector3(0f, 0f, 90f)
         };
+    }
+
+    private void ClearBlend()
+    {
+        //Flag
+        _isImported = false;
+
+        //Models
+        if (_blendNodes != null)
+        {
+            foreach (var node in _blendNodes)
+            {
+                if (node != null && IsInstanceValid(node) && !node.IsQueuedForDeletion())
+                {
+                    node.QueueFree();
+                }
+            }
+            _blendNodes.Clear();
+        }
+
+        //Colliders
+        foreach (var collider in _colliders)
+        {
+            if (collider != null && IsInstanceValid(collider) && !collider.IsQueuedForDeletion())
+            {
+                collider.QueueFree();
+            }
+        }
+        _colliders.Clear();
     }
 }
