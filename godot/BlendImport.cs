@@ -79,6 +79,20 @@ public partial class BlendImport : Node
 
     private void ImportBlend(Node sceneOwner)
     {
+        //Import the .blend's model, create the physics nodes, and organize the models within
+        //RECIPE:
+        //
+        // Rigidbodies for the chassis and wheels, and Generic6DOFJoint nodes for their joints - all in the scene as siblings
+        // 
+        // 300kg mass for chassis
+        // 30kg mass for wheels
+        // 
+        // set joint node references
+        // 
+        // set Chassis script references
+        // 
+        // The only thing changed about the joints in the inspector is disable the angular limit around the X axis (so the wheels can propel the vehicle)
+
         GD.Print("ImportBlend()");
 
         //Flag

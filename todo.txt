@@ -1,33 +1,21 @@
 SCALESHIFT
 Fucking do everything
-Character controller - specifically next: connect the wheels to the chasis
 Pedestrians
 NPC cars
 Cop cars
+Wave function collapse city layout?
 
 LOLBOT
-Set the car to be resting directly on the origin
-
-Set the car's forward vector to point along Godot's -Z = Blender's -Y
-(Blender uses Z for the up axis whereas Godot uses Y for the up axis)
-
-Make each wheel:
-- a separate object
-- with their origins at their centres
-- - in object mode > select the object > object dropdown in the top-left > set origin > center of mass (volume)
-- - Then press Alt+g to reset transform
-- and their forward vectors in the direction of travel
-
-Add fangs to taxi
+Set the car to be resting directly on the origin (DONE?)
 
 Model pedestrians
 
-Come up with some upgrades (which can double as variation for NPC cars). Ex: gold spinning rims, cop car stuff
+Come up with and make some upgrades (which can double as variation for NPC cars). Ex: gold spinning rims, cop car stuff
 
+City roads:
+- 200m north/south road
+- 100m east/west road
+- 100m alleyway east-west road
+- 4-way intersections
 
-200m north/south road
-100m east/west road
-100m alleyway east-west road
-4-way intersections
-
-Need to organize the chassis into `Always`, `Upgrade0`, `Upgrade1`, etc.
+City buildings that fit within lots based on the above block sizes (still need to decide divisions)
