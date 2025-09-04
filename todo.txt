@@ -1,5 +1,4 @@
 SCALESHIFT
-Fucking do everything
 Pedestrians
 NPC cars
 Cop cars
@@ -13,7 +12,7 @@ Model pedestrians
 Come up with and make some upgrades (which can double as variation for NPC cars). Ex: gold spinning rims, cop car stuff
 
 City roads:
-- 200m north/south road
+- 200m north/south road (DONE)
 - 100m east/west road
 - 100m alleyway east-west road
 - 4-way intersections

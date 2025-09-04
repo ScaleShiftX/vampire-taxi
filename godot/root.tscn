@@ -1,13 +1,189 @@
-[gd_scene load_steps=7 format=3 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=25 format=4 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://dd1bavnxddw85" path="res://BlendImport.cs" id="2_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/model/taxi.blend" id="3_jnlp7"]
+[ext_resource type="Texture2D" uid="uid://1gghrblfumx" path="res://environment/road/road_square_sidewalk.png" id="5_vyht1"]
+[ext_resource type="Texture2D" uid="uid://dypbn15eht8ib" path="res://environment/road/road_square_asphalt.png" id="6_bf3um"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8v81"]
 albedo_texture = ExtResource("1_pq8q7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lut2i"]
+resource_name = "sidewalk"
+cull_mode = 2
+albedo_texture = ExtResource("5_vyht1")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(1, 21.276, 1)
+uv1_offset = Vector3(-0.1, -20.276, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wgsq1"]
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -100, 9.39999, 0.1, 200),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYACAAJAAoACwAKAAkADAAKAAsADAAIAAoACwAJAA0ADgAIAAwACAAPAAkADgAPAAgADQAJAA8ADQAPAA4A"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("Oxv/////AAAAAP//AAAAADsb//8AAAAAOxsAAAAAAAA7GwAA//8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAMPk//8AAAAA////////AADD5P////8AAMPkAAD//wAAw+QAAAAAAAD//wAA//8AAP//AAAAAAAA/////wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1t0y"]
+resource_name = "road_north_south_Plane"
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -100, 9.39999, 0.1, 200),
+"attribute_data": PackedByteArray("wAr//3gJAADACgAAeAn//8AKAAAIDP//wAr//wgMAAAoDP//CAwAACgMAAAIDP//qwz//4sMt/6rDLf+iwz//0kM//8oDAAASQwAACgM//+rDLf+iwxv/asMb/2LDLf+qwxv/YsMJ/yrDCf8iwxv/WoM//9JDAAAagwAAEkM//+LDP//agwAAIsMAABqDP//qwwn/IsM4PqrDOD6iwwn/A=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUA"),
+"material": SubResource("StandardMaterial3D_lut2i"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("Oxv//////78AAP//AAD/vzsb//8AAP+/AAD//////7/D5P//AAD/v/////////+/w+T//////7//////AAD/v///AAD//1TV/////wAAVNX//wAAAABU1f///////1TVOxsAAAAA//8AAP//AAD//wAAAAAAAP//Oxv//wAA///D5AAAAABU1cPk/////1TVw+QAAP//VNXD5P//AABU1cPkAAD///+//////////7///wAA////v8Pk//////+/AAAAAP///787G///////vzsbAAD///+/AAD//////78AAAAAAABU1QAA/////1TVAAAAAP//VNUAAP//AABU1TsbAAD//1TVOxv//wAAVNU7GwAAAABU1Tsb/////1TV//8AAAAA///D5P//AAD//8PkAAAAAP///////wAA//////9/////f////3////9/////f////3////9/////f6qqVFWqqlRVqqpUVaqqVFX/P/+//z//v/8//7//P/+/VFWqqlRVqqpUVaqqVFWqqv9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9/VFWqqlRVqqpUVaqqVFWqqqqqVFWqqlRVqqpUVaqqVFX/P/+//z//v/8//7//P/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wgsq1")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_huihk"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, 4.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7n2j"]
+resource_name = "road"
+cull_mode = 2
+albedo_texture = ExtResource("6_bf3um")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(0.8, 21.276, 1)
+uv1_offset = Vector3(0.98, -20.276, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_25q7k"]
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -100, 7.39999, 1e-05, 200),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ox3he"]
+resource_name = "road_north_south_Plane_001"
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -100, 7.39999, 1e-05, 200),
+"attribute_data": PackedByteArray("AAD//3gJAAB4Cf//AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_v7n2j"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_25q7k")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tw3kd"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64bgw"]
+resource_name = "sidewalk"
+cull_mode = 2
+albedo_texture = ExtResource("5_vyht1")
+metallic = 0.145455
+roughness = 0.740909
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2h16p"]
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -4.7, 9.39999, 0.1, 9.39999),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYACAAJAAoACwAKAAkADAAKAAsADAAIAAoACwAJAA0ADgAIAAwACAAPAAkADgAPAAgADQAJAA8ADQAPAA4A"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("Oxv/////AAAAAP//AAAAADsb//8AAAAAOxsAAAAAAAA7GwAA//8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAMPk//8AAAAA////////AADD5P////8AAMPkAAD//wAAw+QAAAAAAAD//wAA//8AAP//AAAAAAAA/////wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fvpwb"]
+resource_name = "road_square_Plane"
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -4.7, 9.39999, 0.1, 9.39999),
+"attribute_data": PackedByteArray("Ndn//1m/7Qw12e0MWb///zXZ7QwR8///Ndn//xHz7Qyn9f//EfPtDKf17QwR8////////2n9I+b//yPmaf3//z34//+n9e0MPfjtDKf1/////yPmaf1HzP//R8xp/SPm//9HzGn9a7L//2uyaf1HzNP6//89+O0M0/rtDD34//9p/f//0/rtDGn97QzT+v////9rsmn9kJj+/5CYaf1rsg=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUA"),
+"material": SubResource("StandardMaterial3D_64bgw"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("Oxv//////78AAP//AAD/vzsb//8AAP+/AAD//////7/D5P//AAD/v/////////+/w+T//////7//////AAD/v///AAD//1TV/////wAAVNX//wAAAABU1f///////1TVOxsAAAAA//8AAP//AAD//wAAAAAAAP//Oxv//wAA///D5AAAAABU1cPk/////1TVw+QAAP//VNXD5P//AABU1cPkAAD///+//////////7///wAA////v8Pk//////+/AAAAAP///787G///////vzsbAAD///+/AAD//////78AAAAAAABU1QAA/////1TVAAAAAP//VNUAAP//AABU1TsbAAD//1TVOxv//wAAVNU7GwAAAABU1Tsb/////1TV//8AAAAA///D5P//AAD//8PkAAAAAP///////wAA//////9/////f////3////9/////f////3////9/////f6qqVFWqqlRVqqpUVaqqVFX/P/+//z//v/8//7//P/+/VFWqqlRVqqpUVaqqVFWqqv9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9/VFWqqlRVqqpUVaqqVFWqqqqqVFWqqlRVqqpUVaqqVFX/P/+//z//v/8//7//P/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2h16p")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gd4vy"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, -4.7, 0.1, -4.7, 4.7, 0, -4.7, -4.7, 0.1, 4.7, 4.7, 0, 4.7, 4.7, 0.1, -4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhxo1"]
+resource_name = "road"
+cull_mode = 2
+albedo_texture = ExtResource("6_bf3um")
+metallic = 0.145455
+roughness = 0.740909
+normal_enabled = true
+normal_texture = ExtResource("6_bf3um")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m7vyp"]
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -4.7, 7.39999, 1e-05, 9.39999),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c6fao"]
+resource_name = "road_square_Plane_001"
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -4.7, 7.39999, 1e-05, 9.39999),
+"attribute_data": PackedByteArray("AAD//1m/7QxZv///AADtDA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_bhxo1"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m7vyp")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qw60f"]
+points = PackedVector3Array(3.7, 0, 4.7, -3.7, 0, 4.7, 3.7, 0, -4.7, -3.7, 0, -4.7)
 
 [node name="Root" type="Node3D"]
 
@@ -31,6 +207,47 @@ size = Vector3(100, 1, 100)
 
 [node name="Sun" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.54272, 0.839914, 0, -0.839914, 0.54272, 0, 3.71162, 0)
+
+[node name="road_north_south" type="Node3D" parent="Environment"]
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/road_north_south"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/road_north_south/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/road_north_south/Sidewalk/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_huihk")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/road_north_south"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/road_north_south/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/road_north_south/Road/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_tw3kd")
+
+[node name="road_square" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/road_square"]
+mesh = SubResource("ArrayMesh_fvpwb")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/road_square/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/road_square/Sidewalk/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_gd4vy")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/road_square"]
+mesh = SubResource("ArrayMesh_c6fao")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/road_square/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/road_square/Road/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_qw60f")
 
 [node name="CameraPlayerPivot" type="Node3D" parent="."]
 
