@@ -63,51 +63,68 @@ public partial class BlendImport : Node
         //Place the whole subtree in the scene tree
         MakeOwnedRecursive(_blendInstance, sceneOwner);
 
-        //ORGANIZE
-        List<Node> allNodes = GetAllChildren(_blendInstance);
-
-        foreach (var node in allNodes)
-        {
-            if (node is Node3D n3d)
-            {
-                GD.Print(n3d.GlobalPosition);
-            }
-        }
+        //Get a list of every node
+        List<Node> blendNodes = GetAllChildren(_blendInstance);
 
         //Move wheel rigidbodies+joints into position
-        foreach (var node in allNodes)
+        foreach (var node in blendNodes)
         {
             if (node is Node3D n3d)
             {
                 if (node.Name == "tire_bl")
                 {
-                    GD.Print($"{node.Name}: {n3d.GlobalPosition}");
                     _wheelBackLeft.GlobalPosition = n3d.GlobalPosition;
                     _jointBackLeft.GlobalPosition = n3d.GlobalPosition;
                 }
                 else if (node.Name == "tire_br")
                 {
-                    GD.Print($"{node.Name}: {n3d.GlobalPosition}");
                     _wheelBackRight.GlobalPosition = n3d.GlobalPosition;
                     _jointBackRight.GlobalPosition = n3d.GlobalPosition;
                 }
                 else if (node.Name == "tire_fl")
                 {
-                    GD.Print($"{node.Name}: {n3d.GlobalPosition}");
                     _wheelFrontLeft.GlobalPosition = n3d.GlobalPosition;
                     _jointFrontLeft.GlobalPosition = n3d.GlobalPosition;
                 }
                 else if (node.Name == "tire_fr")
                 {
-                    GD.Print($"{node.Name}: {n3d.GlobalPosition}");
                     _wheelFrontRight.GlobalPosition = n3d.GlobalPosition;
                     _jointFrontRight.GlobalPosition = n3d.GlobalPosition;
                 }
             }
         }
-        
+
+        //Generate colliders
+        foreach (var node in blendNodes)
+        {
+            if (node.Name == "WheelBackLeft")
+            {
+                CollisionShape3D collider = CreateWheelCollider();
+                _wheelBackLeft.AddChild(collider);
+                MakeOwnedRecursive(collider, sceneOwner);
+            }
+            else if (node.Name == "WheelBackRight")
+            {
+                CollisionShape3D collider = CreateWheelCollider();
+                _wheelBackRight.AddChild(collider);
+                MakeOwnedRecursive(collider, sceneOwner);
+            }
+            else if (node.Name == "WheelFrontLeft")
+            {
+                CollisionShape3D collider = CreateWheelCollider();
+                _wheelFrontLeft.AddChild(collider);
+                MakeOwnedRecursive(collider, sceneOwner);
+            }
+            else if (node.Name == "WheelFrontRight")
+            {
+                CollisionShape3D collider = CreateWheelCollider();
+                _wheelFrontRight.AddChild(collider);
+                MakeOwnedRecursive(collider, sceneOwner);
+            }
+        }
+
         //Set all models to be children of their respective rigidbodies
-        foreach (var node in allNodes)
+        foreach (var node in blendNodes)
         {
             if (node.Name == "Chassis")
             {
@@ -137,7 +154,7 @@ public partial class BlendImport : Node
         }
 
         //Hide locked upgrades
-        foreach (var node in allNodes)
+        foreach (var node in blendNodes)
         {
             if (node is Node3D n3d)
             {
@@ -196,5 +213,18 @@ public partial class BlendImport : Node
 
         Recurse(parent);
         return result;
+    }
+
+    private CollisionShape3D CreateWheelCollider()
+    {
+        return new CollisionShape3D()
+        {
+            Shape = new CylinderShape3D
+            {
+                Height = 0.37f,
+                Radius = 0.601f
+            },
+            RotationDegrees = new Vector3(0f, 0f, 90f)
+        };
     }
 }
