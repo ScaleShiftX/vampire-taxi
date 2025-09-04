@@ -9,7 +9,7 @@ public partial class BlendImport : Node
     private List<Node> _blendNodes;
 
     [ExportToolButton("Import .blend", Icon = "PackedScene")]
-    public Callable ButtonImport => Callable.From(() => {CallDeferred(nameof(ImportBlend));});
+    public Callable ButtonImport => Callable.From(ImportBlendPreamble);
 
     [ExportToolButton("Clear .blend", Icon = "PackedScene")]
     public Callable ButtonClear => Callable.From(ClearBlend);
@@ -19,24 +19,24 @@ public partial class BlendImport : Node
     [Export] private PackedScene _blend;
     private Node3D _blendInstance;
 
+    [Export] private Script _chassisScript;
+    
     private List<CollisionShape3D> _colliders = [];
 
-    [Export] private RigidBody3D _chassis;
+    private Chassis _chassis;
 
-    [Export] private RigidBody3D _wheelFrontLeft;
-    [Export] private RigidBody3D _wheelFrontRight;
-    [Export] private RigidBody3D _wheelBackLeft;
-    [Export] private RigidBody3D _wheelBackRight;
+    private RigidBody3D _wheelFrontLeft;
+    private RigidBody3D _wheelFrontRight;
+    private RigidBody3D _wheelBackLeft;
+    private RigidBody3D _wheelBackRight;
 
-    [Export] private Generic6DofJoint3D _jointFrontLeft;
-    [Export] private Generic6DofJoint3D _jointFrontRight;
-    [Export] private Generic6DofJoint3D _jointBackLeft;
-    [Export] private Generic6DofJoint3D _jointBackRight;
+    private Generic6DofJoint3D _jointFrontLeft;
+    private Generic6DofJoint3D _jointFrontRight;
+    private Generic6DofJoint3D _jointBackLeft;
+    private Generic6DofJoint3D _jointBackRight;
 
-    private void ImportBlend()
+    private async void ImportBlendPreamble()
     {
-        GD.Print("ImportBlend()");
-
         //Get owner
         var sceneOwner = GetTree().EditedSceneRoot;
         if (sceneOwner == null)
@@ -45,28 +45,42 @@ public partial class BlendImport : Node
             return;
         }
 
-        //Clear previous blend
+        //Clear previous blend if there is one
         if (_isImported)
         {
             ClearBlend();
+
+            //Need to wait 2 frames I guess (CallDeferred isn't enough time)
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
+
+        ImportBlend(sceneOwner);
+    }
+
+    private void ImportBlend(Node sceneOwner)
+    {
+        GD.Print("ImportBlend()");
 
         //Flag
         _isImported = true;
 
+        //Add and set up rigidbodies and joints
+        AddPhysicsNodes(sceneOwner);
+
         //GET INTO SCENE TREE
         _blendInstance = (Node3D)_blend.Instantiate();
         sceneOwner.AddChild(_blendInstance);
-
+        
         //Position
         _blendInstance.GlobalPosition = _chassis.GlobalPosition;
-
+        
         //Place the whole subtree in the scene tree
         MakeOwnedRecursive(_blendInstance, sceneOwner);
-
+        
         //Get a list of every node
         _blendNodes = GetAllChildren(_blendInstance);
-
+        
         //Move wheel rigidbodies+joints into position
         //Add save the tire mesh for generating colliders later
         MeshInstance3D chassisMesh = null;
@@ -82,7 +96,7 @@ public partial class BlendImport : Node
                 else if (node.Name == "tire_bl")
                 {
                     tireMesh = node as MeshInstance3D;
-
+        
                     _wheelBackLeft.GlobalPosition = node3D.GlobalPosition;
                     _jointBackLeft.GlobalPosition = node3D.GlobalPosition;
                 }
@@ -103,7 +117,7 @@ public partial class BlendImport : Node
                 }
             }
         }
-
+        
         //Generate colliders
         foreach (var node in _blendNodes)
         {
@@ -116,11 +130,11 @@ public partial class BlendImport : Node
                         Shape = chassisMesh.Mesh.CreateConvexShape(),
                         RotationDegrees = new Vector3(0f, 180f, 0f)
                     };
-
+        
                     _chassis.AddChild(collider);
                     MakeOwnedRecursive(collider, sceneOwner);
                     _colliders.Add(collider);
-
+        
                     //Can't use CreateTrimeshCollision() because it creates a concave collider
                     //
                     //which doesn't work will with rigidbodies
@@ -163,7 +177,7 @@ public partial class BlendImport : Node
                 _colliders.Add(collider);
             }
         }
-
+        
         //Set all models to be children of their respective rigidbodies
         foreach (var node in _blendNodes)
         {
@@ -193,7 +207,7 @@ public partial class BlendImport : Node
                 MakeOwnedRecursive(node, sceneOwner);
             }
         }
-
+        
         //Hide locked upgrades
         foreach (var node in _blendNodes)
         {
@@ -230,7 +244,7 @@ public partial class BlendImport : Node
                 }
             }
         }
-
+        
         //Delete the original parent (now empty)
         _blendInstance.QueueFree();
         _blendInstance = null;
@@ -238,6 +252,52 @@ public partial class BlendImport : Node
         //I think because it's an inherited packed scene so there's some hidden stuff inside it still
         //We'll be tolerant of this in the ClearBlend() method
         _blendNodes.RemoveAll(node => node == null || !GodotObject.IsInstanceValid(node) || node.IsQueuedForDeletion());
+    }
+
+    private void AddPhysicsNodes(Node sceneOwner)
+    {
+        //Chassis rigidbody
+        _chassis = new Chassis { Name = "Chassis", Mass = 300f };
+        sceneOwner.AddChild(_chassis);
+        _chassis.Owner = sceneOwner;
+
+        //Wheel rigidbodies
+        _wheelFrontLeft = new RigidBody3D()     { Name = "WheelFrontLeft",  Mass = 30f };
+        _wheelFrontRight = new RigidBody3D()    { Name = "WheelFrontRight", Mass = 30f };
+        _wheelBackLeft = new RigidBody3D()      { Name = "WheelBackLeft",   Mass = 30f };
+        _wheelBackRight = new RigidBody3D()     { Name = "WheelBackRight",  Mass = 30f };
+        sceneOwner.AddChild(_wheelFrontLeft);
+        sceneOwner.AddChild(_wheelFrontRight);
+        sceneOwner.AddChild(_wheelBackLeft);
+        sceneOwner.AddChild(_wheelBackRight);
+        _wheelFrontLeft.Owner = sceneOwner;
+        _wheelFrontRight.Owner = sceneOwner;
+        _wheelBackLeft.Owner = sceneOwner;
+        _wheelBackRight.Owner = sceneOwner;
+        
+        //Joints
+        _jointFrontLeft = new Generic6DofJoint3D()  { Name = "JointFrontLeft", NodeA = _chassis.GetPath(), NodeB = _wheelFrontLeft.GetPath() };
+        _jointFrontRight = new Generic6DofJoint3D() { Name = "JointFrontRight", NodeA = _chassis.GetPath(), NodeB = _wheelFrontRight.GetPath() };
+        _jointBackLeft = new Generic6DofJoint3D()   { Name = "JointBackLeft", NodeA = _chassis.GetPath(), NodeB = _wheelBackLeft.GetPath() };
+        _jointBackRight = new Generic6DofJoint3D()  { Name = "JointBackRight", NodeA = _chassis.GetPath(), NodeB = _wheelBackRight.GetPath() };
+        sceneOwner.AddChild(_jointFrontLeft);
+        sceneOwner.AddChild(_jointFrontRight);
+        sceneOwner.AddChild(_jointBackLeft);
+        sceneOwner.AddChild(_jointBackRight);
+        _jointFrontLeft.Owner = sceneOwner;
+        _jointFrontRight.Owner = sceneOwner;
+        _jointBackLeft.Owner = sceneOwner;
+        _jointBackRight.Owner = sceneOwner;
+        _jointFrontLeft.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
+        _jointFrontRight.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
+        _jointBackLeft.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
+        _jointBackRight.SetFlagX(Generic6DofJoint3D.Flag.EnableAngularLimit, false);
+
+        //Chassis script references
+        _chassis.JointFrontLeft = _jointFrontLeft;
+        _chassis.JointFrontRight = _jointFrontRight;
+        _chassis.WheelFrontLeft = _wheelFrontLeft;
+        _chassis.WheelFrontRight = _wheelFrontRight;
     }
 
     private static void MakeOwnedRecursive(Node node, Node owner)
@@ -318,16 +378,13 @@ public partial class BlendImport : Node
             rotationDeg = Vector3.Zero;              //no rotation needed
         }
 
-        //4.) Build the collider node
-        var shape = new CylinderShape3D
-        {
-            Height = height,
-            Radius = radius
-        };
-
         var collider = new CollisionShape3D
         {
-            Shape = shape,
+            Shape = new CylinderShape3D
+            {
+                Height = height,
+                Radius = radius
+            },
             RotationDegrees = rotationDeg
         };
 
@@ -336,30 +393,63 @@ public partial class BlendImport : Node
 
     private void ClearBlend()
     {
-        //Flag
-        _isImported = false;
+        GD.Print("ClearBlend()");
 
-        //Models
-        if (_blendNodes != null)
+        if (_isImported)
         {
-            foreach (var node in _blendNodes)
-            {
-                if (node != null && IsInstanceValid(node) && !node.IsQueuedForDeletion())
-                {
-                    node.QueueFree();
-                }
-            }
+            //Flag
+            _isImported = false;
+
+            //Physics nodes
+            ClearPhysicsNodes();
+
+            //Models
             _blendNodes.Clear();
+            _colliders.Clear();
         }
-
-        //Colliders
-        foreach (var collider in _colliders)
+        else
         {
-            if (collider != null && IsInstanceValid(collider) && !collider.IsQueuedForDeletion())
-            {
-                collider.QueueFree();
-            }
+            GD.Print("Nothing to clear!");
         }
-        _colliders.Clear();
+        
+        //if (_blendNodes != null)
+        //{
+        //    foreach (var node in _blendNodes)
+        //    {
+        //        if (node != null && IsInstanceValid(node) && !node.IsQueuedForDeletion())
+        //        {
+        //            node.QueueFree();
+        //        }
+        //    }
+        //    _blendNodes.Clear();
+        //}
+        //
+        ////Colliders
+        //foreach (var collider in _colliders)
+        //{
+        //    if (collider != null && IsInstanceValid(collider) && !collider.IsQueuedForDeletion())
+        //    {
+        //        collider.QueueFree();
+        //    }
+        //}
+        //_colliders.Clear();
+    }
+
+    private void ClearPhysicsNodes()
+    {
+        //Chassis
+        _chassis.QueueFree();
+
+        //Wheels
+        _wheelFrontLeft.QueueFree();
+        _wheelFrontRight.QueueFree();
+        _wheelBackLeft.QueueFree();
+        _wheelBackRight.QueueFree();
+
+        //Joints
+        _jointFrontLeft.QueueFree();
+        _jointFrontRight.QueueFree();
+        _jointBackLeft.QueueFree();
+        _jointBackRight.QueueFree();
     }
 }

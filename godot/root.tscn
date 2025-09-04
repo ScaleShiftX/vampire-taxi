@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=8 format=3 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
@@ -6,9 +6,6 @@
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
 [ext_resource type="Script" uid="uid://dd1bavnxddw85" path="res://BlendImport.cs" id="2_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/model/taxi.blend" id="3_jnlp7"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pyidc"]
-friction = 100.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8v81"]
 albedo_texture = ExtResource("1_pq8q7")
@@ -20,80 +17,18 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_28aoi")
 
-[node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_chassis", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight", "_jointFrontLeft", "_jointFrontRight", "_jointBackLeft", "_jointBackRight")]
+[node name="BlendImport" type="Node" parent="."]
 script = ExtResource("2_l8v81")
 _blend = ExtResource("3_jnlp7")
-_chassis = NodePath("../Chassis")
-_wheelFrontLeft = NodePath("../WheelFrontLeft")
-_wheelFrontRight = NodePath("../WheelFrontRight")
-_wheelBackLeft = NodePath("../WheelBackLeft")
-_wheelBackRight = NodePath("../WheelBackRight")
-_jointFrontLeft = NodePath("../JointFrontLeft")
-_jointFrontRight = NodePath("../JointFrontRight")
-_jointBackLeft = NodePath("../JointBackLeft")
-_jointBackRight = NodePath("../JointBackRight")
+_chassisScript = ExtResource("1_vvh5c")
 
-[node name="Chassis" type="RigidBody3D" parent="." node_paths=PackedStringArray("_jointFrontLeft", "_jointFrontRight", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight")]
+[node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.394745, 0)
-mass = 300.0
-script = ExtResource("1_vvh5c")
-_jointFrontLeft = NodePath("../JointFrontLeft")
-_jointFrontRight = NodePath("../JointFrontRight")
-_wheelFrontLeft = NodePath("../WheelFrontLeft")
-_wheelFrontRight = NodePath("../WheelFrontRight")
-_wheelBackLeft = NodePath("../WheelBackLeft")
-_wheelBackRight = NodePath("../WheelBackRight")
 
-[node name="CameraPivot" type="Node3D" parent="Chassis"]
-
-[node name="Camera3D" type="Camera3D" parent="Chassis/CameraPivot" node_paths=PackedStringArray("_pivot")]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" node_paths=PackedStringArray("_pivot")]
 transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 2.12839, 3.51943)
 script = ExtResource("2_28aoi")
 _pivot = NodePath("..")
-
-[node name="JointFrontLeft" type="Generic6DOFJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.536974, 0, -0.992)
-node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelFrontLeft")
-angular_limit_x/enabled = false
-
-[node name="WheelFrontLeft" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15326, -0.01217, -0.968449)
-mass = 30.0
-physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="JointFrontRight" type="Generic6DOFJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.537, 0, -0.992)
-node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelFrontRight")
-angular_limit_x/enabled = false
-
-[node name="WheelFrontRight" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15326, -0.0121699, -0.968449)
-mass = 30.0
-physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="JointBackLeft" type="Generic6DOFJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.536974, 0, 0.992)
-node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelBackLeft")
-angular_limit_x/enabled = false
-
-[node name="WheelBackLeft" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15326, -0.0121706, 1.05285)
-mass = 30.0
-physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="JointBackRight" type="Generic6DOFJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.537, 0, 0.992)
-node_a = NodePath("../Chassis")
-node_b = NodePath("../WheelBackRight")
-angular_limit_x/enabled = false
-
-[node name="WheelBackRight" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15326, -0.0121704, 1.05285)
-mass = 30.0
-physics_material_override = SubResource("PhysicsMaterial_pyidc")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.81112, 0)
