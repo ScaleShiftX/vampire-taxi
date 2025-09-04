@@ -66,12 +66,17 @@ public partial class BlendImport : Node
         _blendNodes = GetAllChildren(_blendInstance);
 
         //Move wheel rigidbodies+joints into position
+        //Add save the tire mesh for generating colliders later
+        MeshInstance3D tireMesh = null;
         foreach (var node in _blendNodes)
         {
             if (node is Node3D node3D)
             {
                 if (node.Name == "tire_bl")
                 {
+                    MeshInstance3D mesh = node as MeshInstance3D;
+                    tireMesh = mesh;
+
                     _wheelBackLeft.GlobalPosition = node3D.GlobalPosition;
                     _jointBackLeft.GlobalPosition = node3D.GlobalPosition;
                 }
@@ -98,28 +103,28 @@ public partial class BlendImport : Node
         {
             if (node.Name == "WheelBackLeft")
             {
-                CollisionShape3D collider = CreateWheelCollider();
+                CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelBackLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
             else if (node.Name == "WheelBackRight")
             {
-                CollisionShape3D collider = CreateWheelCollider();
+                CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelBackRight.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
             else if (node.Name == "WheelFrontLeft")
             {
-                CollisionShape3D collider = CreateWheelCollider();
+                CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelFrontLeft.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
             }
             else if (node.Name == "WheelFrontRight")
             {
-                CollisionShape3D collider = CreateWheelCollider();
+                CollisionShape3D collider = CreateWheelCollider(tireMesh);
                 _wheelFrontRight.AddChild(collider);
                 MakeOwnedRecursive(collider, sceneOwner);
                 _colliders.Add(collider);
@@ -228,17 +233,72 @@ public partial class BlendImport : Node
         return result;
     }
 
-    private CollisionShape3D CreateWheelCollider()
+    private static CollisionShape3D CreateWheelCollider(MeshInstance3D  tireMesh)
     {
-        return new CollisionShape3D()
+        //return new CollisionShape3D()
+        //{
+        //    Shape = new CylinderShape3D
+        //    {
+        //        Height = 0.37f,
+        //        Radius = 0.601f
+        //    },
+        //    RotationDegrees = new Vector3(0f, 0f, 90f)
+        //};
+
+        //1.) Get the mesh AABB in mesh-local space
+        var aabbLocal = tireMesh.Mesh.GetAabb();
+
+        //2.) Convert to world-scaled size (assumes no shear; fine for typical rigs)
+        //   This accounts for the node’s global scaling (including parents).
+        Vector3 worldScale = new Vector3(
+            tireMesh.GlobalTransform.Basis.X.Length(),
+            tireMesh.GlobalTransform.Basis.Y.Length(),
+            tireMesh.GlobalTransform.Basis.Z.Length()
+        ).Abs();
+
+        Vector3 sizeWorld = aabbLocal.Size * worldScale;
+
+        //3.) Pick cylinder axis = smallest dimension (tire thickness)
+        //   radius = half of the max of the other two dimensions
+        float radius, height;
+
+        Vector3 rotationDeg;
+        if (sizeWorld.X <= sizeWorld.Y && sizeWorld.X <= sizeWorld.Z)
         {
-            Shape = new CylinderShape3D
-            {
-                Height = 0.37f,
-                Radius = 0.601f
-            },
-            RotationDegrees = new Vector3(0f, 0f, 90f)
+            //Thickness along X -> cylinder axis should be X
+            height = sizeWorld.X;
+            radius = 0.5f * Mathf.Max(sizeWorld.Y, sizeWorld.Z);
+            rotationDeg = new Vector3(0f, 0f, 90f);  //rotate so axis becomes X
+        }
+        else if (sizeWorld.Z <= sizeWorld.X && sizeWorld.Z <= sizeWorld.Y)
+        {
+            //Thickness along Z -> cylinder axis should be Z
+            height = sizeWorld.Z;
+            radius = 0.5f * Mathf.Max(sizeWorld.X, sizeWorld.Y);
+            rotationDeg = new Vector3(90f, 0f, 0f);  //axis becomes Z
+        }
+        else
+        {
+            //Thickness along Y -> cylinder axis already matches Y
+            height = sizeWorld.Y;
+            radius = 0.5f * Mathf.Max(sizeWorld.X, sizeWorld.Z);
+            rotationDeg = Vector3.Zero;              //no rotation needed
+        }
+
+        //4.) Build the collider node
+        var shape = new CylinderShape3D
+        {
+            Height = height,
+            Radius = radius
         };
+
+        var collider = new CollisionShape3D
+        {
+            Shape = shape,
+            RotationDegrees = rotationDeg
+        };
+
+        return collider;
     }
 
     private void ClearBlend()
