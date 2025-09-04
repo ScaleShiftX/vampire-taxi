@@ -5,28 +5,19 @@ using System.Collections.Generic;
 [Tool]
 public partial class BlendImport : Node
 {
-    private enum EditorAction { None, RunImport }
-
-    [Export]
-    private EditorAction Action
+    [ExportToolButton("Import .blend", Icon = "PackedScene")]
+    public Callable ClickMeButton => Callable.From(() =>
     {
-        get => EditorAction.None;
-        set
-        {
-            if (value == EditorAction.RunImport)
-            {
-                //ImportBlend();
-                CallDeferred(nameof(RunImportDeferred));
-                // reset so it behaves like a button
-                SetDeferred(nameof(Action), 0); //0 == None
-            }
-        }
-    }
+        CallDeferred(nameof(RunImportDeferred));
+
+        //Reset so it behaves like a button
+        SetDeferred(nameof(Action), 0); //0 == None
+    });
 
     [Export] private PackedScene _blend;
     private Node3D _blendInstance;
 
-    [Export] private RigidBody3D _chassisRb;
+    [Export] private RigidBody3D _chassis;
 
     [Export] private RigidBody3D _wheelFrontLeft;
     [Export] private RigidBody3D _wheelFrontRight;
@@ -37,7 +28,7 @@ public partial class BlendImport : Node
     [Export] private Generic6DofJoint3D _jointFrontRight;
     [Export] private Generic6DofJoint3D _jointBackLeft;
     [Export] private Generic6DofJoint3D _jointBackRight;
-
+    
     private void RunImportDeferred()
     {
         var sceneRoot = GetTree().EditedSceneRoot;
@@ -57,7 +48,7 @@ public partial class BlendImport : Node
         //GET INTO SCENE TREE
         _blendInstance = (Node3D)_blend.Instantiate();
 
-        _blendInstance.GlobalPosition = _chassisRb.GlobalPosition;
+        _blendInstance.GlobalPosition = _chassis.GlobalPosition;
         sceneOwner.AddChild(_blendInstance);
 
         //Place the whole subtree in the scene tree
@@ -69,27 +60,27 @@ public partial class BlendImport : Node
         //Move wheel rigidbodies+joints into position
         foreach (var node in blendNodes)
         {
-            if (node is Node3D n3d)
+            if (node is Node3D node3D)
             {
                 if (node.Name == "tire_bl")
                 {
-                    _wheelBackLeft.GlobalPosition = n3d.GlobalPosition;
-                    _jointBackLeft.GlobalPosition = n3d.GlobalPosition;
+                    _wheelBackLeft.GlobalPosition = node3D.GlobalPosition;
+                    _jointBackLeft.GlobalPosition = node3D.GlobalPosition;
                 }
                 else if (node.Name == "tire_br")
                 {
-                    _wheelBackRight.GlobalPosition = n3d.GlobalPosition;
-                    _jointBackRight.GlobalPosition = n3d.GlobalPosition;
+                    _wheelBackRight.GlobalPosition = node3D.GlobalPosition;
+                    _jointBackRight.GlobalPosition = node3D.GlobalPosition;
                 }
                 else if (node.Name == "tire_fl")
                 {
-                    _wheelFrontLeft.GlobalPosition = n3d.GlobalPosition;
-                    _jointFrontLeft.GlobalPosition = n3d.GlobalPosition;
+                    _wheelFrontLeft.GlobalPosition = node3D.GlobalPosition;
+                    _jointFrontLeft.GlobalPosition = node3D.GlobalPosition;
                 }
                 else if (node.Name == "tire_fr")
                 {
-                    _wheelFrontRight.GlobalPosition = n3d.GlobalPosition;
-                    _jointFrontRight.GlobalPosition = n3d.GlobalPosition;
+                    _wheelFrontRight.GlobalPosition = node3D.GlobalPosition;
+                    _jointFrontRight.GlobalPosition = node3D.GlobalPosition;
                 }
             }
         }
@@ -128,7 +119,7 @@ public partial class BlendImport : Node
         {
             if (node.Name == "Chassis")
             {
-                node.Reparent(_chassisRb);
+                node.Reparent(_chassis);
                 MakeOwnedRecursive(node, sceneOwner);
             }
             else if (node.Name == "WheelBackLeft")
@@ -156,7 +147,7 @@ public partial class BlendImport : Node
         //Hide locked upgrades
         foreach (var node in blendNodes)
         {
-            if (node is Node3D n3d)
+            if (node is Node3D node3D)
             {
                 if (
                     (
@@ -185,26 +176,28 @@ public partial class BlendImport : Node
                     )
                 )
                 {
-                    n3d.Visible = false;
+                    node3D.Visible = false;
                 }
             }
         }
     }
 
-    private static void MakeOwnedRecursive(Node n, Node owner)
+    private static void MakeOwnedRecursive(Node node, Node owner)
     {
-        n.Owner = owner;
-        foreach (var c in n.GetChildren())
-            MakeOwnedRecursive(c, owner);
+        node.Owner = owner;
+        foreach (var child in node.GetChildren())
+        {
+            MakeOwnedRecursive(child, owner);
+        }
     }
 
     public static List<Node> GetAllChildren(Node parent)
     {
         var result = new List<Node>();
 
-        void Recurse(Node n)
+        void Recurse(Node node)
         {
-            foreach (Node child in n.GetChildren())
+            foreach (Node child in node.GetChildren())
             {
                 result.Add(child);
                 Recurse(child);

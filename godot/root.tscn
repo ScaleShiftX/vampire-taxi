@@ -26,10 +26,10 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_28aoi")
 
-[node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_chassisRb", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight", "_jointFrontLeft", "_jointFrontRight", "_jointBackLeft", "_jointBackRight")]
+[node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_chassisRigidBody", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight", "_jointFrontLeft", "_jointFrontRight", "_jointBackLeft", "_jointBackRight")]
 script = ExtResource("2_l8v81")
 _blend = ExtResource("3_jnlp7")
-_chassisRb = NodePath("../Chassis")
+_chassisRigidBody = NodePath("../Chassis")
 _wheelFrontLeft = NodePath("../WheelFrontLeft")
 _wheelFrontRight = NodePath("../WheelFrontRight")
 _wheelBackLeft = NodePath("../WheelBackLeft")
