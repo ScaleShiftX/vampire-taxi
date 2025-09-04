@@ -1,27 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=11 format=3 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Texture2D" uid="uid://t1hin2dopfok" path="res://icon.svg" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://cub32ctiqxucu" path="res://taxi/Chassis.cs" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
+[ext_resource type="Script" uid="uid://dd1bavnxddw85" path="res://BlendImport.cs" id="2_l8v81"]
+[ext_resource type="PackedScene" uid="uid://bjood6bwte2my" path="res://taxi/model/taxi.blend" id="3_jnlp7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pyidc"]
 size = Vector3(1, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vvh5c"]
-size = Vector3(1, 1, 2)
+size = Vector3(2.53809, 2.43256, 4.56274)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pyidc"]
 friction = 100.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyidc"]
-albedo_texture = ExtResource("1_pq8q7")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_28aoi"]
-height = 0.75
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jnlp7"]
-height = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8v81"]
 albedo_texture = ExtResource("1_pq8q7")
@@ -33,7 +26,20 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_28aoi")
 
-[node name="Chassis" type="RigidBody3D" parent="." node_paths=PackedStringArray("_jointFrontLeft", "_jointFrontRight", "_wheelFrontLeft", "_wheelFrontRight")]
+[node name="BlendImport" type="Node" parent="." node_paths=PackedStringArray("_chassisRb", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight", "_jointFrontLeft", "_jointFrontRight", "_jointBackLeft", "_jointBackRight")]
+script = ExtResource("2_l8v81")
+_blend = ExtResource("3_jnlp7")
+_chassisRb = NodePath("../Chassis")
+_wheelFrontLeft = NodePath("../WheelFrontLeft")
+_wheelFrontRight = NodePath("../WheelFrontRight")
+_wheelBackLeft = NodePath("../WheelBackLeft")
+_wheelBackRight = NodePath("../WheelBackRight")
+_jointFrontLeft = NodePath("../JointFrontLeft")
+_jointFrontRight = NodePath("../JointFrontRight")
+_jointBackLeft = NodePath("../JointBackLeft")
+_jointBackRight = NodePath("../JointBackRight")
+
+[node name="Chassis" type="RigidBody3D" parent="." node_paths=PackedStringArray("_jointFrontLeft", "_jointFrontRight", "_wheelFrontLeft", "_wheelFrontRight", "_wheelBackLeft", "_wheelBackRight")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.394745, 0)
 mass = 300.0
 script = ExtResource("1_vvh5c")
@@ -41,11 +47,15 @@ _jointFrontLeft = NodePath("../JointFrontLeft")
 _jointFrontRight = NodePath("../JointFrontRight")
 _wheelFrontLeft = NodePath("../WheelFrontLeft")
 _wheelFrontRight = NodePath("../WheelFrontRight")
+_wheelBackLeft = NodePath("../WheelBackLeft")
+_wheelBackRight = NodePath("../WheelBackRight")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Chassis"]
+visible = false
 mesh = SubResource("BoxMesh_pyidc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732391, 0)
 shape = SubResource("BoxShape3D_vvh5c")
 
 [node name="CameraPivot" type="Node3D" parent="Chassis"]
@@ -62,18 +72,9 @@ node_b = NodePath("../WheelFrontLeft")
 angular_limit_x/enabled = false
 
 [node name="WheelFrontLeft" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0, -0.992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15326, -0.01217, -0.968449)
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelFrontLeft"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_pyidc")
-mesh = SubResource("CylinderMesh_28aoi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WheelFrontLeft"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_jnlp7")
 
 [node name="JointFrontRight" type="Generic6DOFJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.537, 0, -0.992)
@@ -82,18 +83,9 @@ node_b = NodePath("../WheelFrontRight")
 angular_limit_x/enabled = false
 
 [node name="WheelFrontRight" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0, -0.992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15326, -0.0121699, -0.968449)
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelFrontRight"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_pyidc")
-mesh = SubResource("CylinderMesh_28aoi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WheelFrontRight"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_jnlp7")
 
 [node name="JointBackLeft" type="Generic6DOFJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.536974, 0, 0.992)
@@ -102,18 +94,9 @@ node_b = NodePath("../WheelBackLeft")
 angular_limit_x/enabled = false
 
 [node name="WheelBackLeft" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0, 0.992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15326, -0.0121706, 1.05285)
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelBackLeft"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_pyidc")
-mesh = SubResource("CylinderMesh_28aoi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WheelBackLeft"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_jnlp7")
 
 [node name="JointBackRight" type="Generic6DOFJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.537, 0, 0.992)
@@ -122,18 +105,9 @@ node_b = NodePath("../WheelBackRight")
 angular_limit_x/enabled = false
 
 [node name="WheelBackRight" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0, 0.992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15326, -0.0121704, 1.05285)
 mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_pyidc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelBackRight"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_pyidc")
-mesh = SubResource("CylinderMesh_28aoi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WheelBackRight"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_jnlp7")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.81112, 0)

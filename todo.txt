@@ -29,3 +29,5 @@ Come up with some upgrades (which can double as variation for NPC cars). Ex: gol
 100m east/west road
 100m alleyway east-west road
 4-way intersections
+
+Need to organize the chassis into `Always`, `Upgrade0`, `Upgrade1`, etc.
