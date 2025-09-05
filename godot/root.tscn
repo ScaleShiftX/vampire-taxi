@@ -1892,25 +1892,31 @@ angular_limit_x/enabled = false
 [node name="Sun" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.54272, 0.839914, 0, -0.839914, 0.54272, 0, 3.71162, 0)
 
-[node name="road_north_south" parent="Environment" instance=ExtResource("5_bf3um")]
+[node name="Road" type="Node" parent="Environment"]
 script = ExtResource("6_huihk")
 
-[node name="road_square" parent="Environment" instance=ExtResource("6_bf3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -114.1)
-script = ExtResource("6_huihk")
+[node name="road_north_south" parent="Environment/Road" instance=ExtResource("5_bf3um")]
 
-[node name="road_intersection_4way" parent="Environment" instance=ExtResource("9_huihk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -104.7)
-script = ExtResource("6_huihk")
-
-[node name="road_north_south2" parent="Environment" instance=ExtResource("5_bf3um")]
+[node name="road_north_south2" parent="Environment/Road" instance=ExtResource("5_bf3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.4, 0, 0)
-script = ExtResource("6_huihk")
 
-[node name="road_intersection_4way2" parent="Environment" instance=ExtResource("9_huihk")]
+[node name="road_square" parent="Environment/Road" instance=ExtResource("6_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -114.1)
+
+[node name="road_intersection_4way" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -104.7)
+
+[node name="road_intersection_4way2" parent="Environment/Road" instance=ExtResource("9_huihk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.4, 0, -104.7)
-script = ExtResource("6_huihk")
 
-[node name="road_east_west" parent="Environment" instance=ExtResource("10_tw3kd")]
+[node name="road_east_west" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7, 0, -104.7)
-script = ExtResource("6_huihk")
+
+[node name="road_intersection_4way3" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 104.7)
+
+[node name="road_intersection_4way4" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.4, 0, 104.7)
+
+[node name="road_east_west2" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7, 0, 104.7)

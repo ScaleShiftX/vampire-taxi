@@ -13,8 +13,10 @@ Come up with and make some upgrades (which can double as variation for NPC cars)
 
 City roads:
 - 200m north/south road (DONE)
-- 100m east/west road
+- 100m east/west road (DONE)
 - 100m alleyway east-west road
-- 4-way intersections
+- 4-way intersections (DONE)
 
 City buildings that fit within lots based on the above block sizes (still need to decide divisions)
+
+Skybox
