@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [Tool]
-public partial class BlendImport : Node
+public partial class BlendImport : Node3D
 {
     [ExportToolButton("(Re)Import .blend", Icon = "PackedScene")] public Callable ButtonImport => Callable.From(ImportBlendPreamble);
     [ExportToolButton("Clear .blend", Icon = "PackedScene")] public Callable ButtonClear => Callable.From(ClearBlend);
@@ -16,6 +16,8 @@ public partial class BlendImport : Node
     private List<Node> _blendNodes;
 
     [Export] Node3D _cameraPivot;
+
+    private Node3D _containerPlayerNode3D;
 
     private Chassis _chassis;
 
@@ -98,6 +100,13 @@ public partial class BlendImport : Node
         //Flag
         _isImported = true;
 
+        //Set container Node3D to self
+        _containerPlayerNode3D = this;
+        ////Create container Node3D
+        //_containerPlayerNode3D = new Node3D { Name = "Player" };
+        //sceneOwner.AddChild(_containerPlayerNode3D);
+        //_containerPlayerNode3D.Owner = sceneOwner;
+
         //Add and set up rigidbodies and joints
         AddPhysicsNodes(sceneOwner);
 
@@ -107,7 +116,7 @@ public partial class BlendImport : Node
 
         //GET INTO SCENE TREE
         Node3D _blendInstance = (Node3D)_blend.Instantiate();
-        sceneOwner.AddChild(_blendInstance);
+        _containerPlayerNode3D.AddChild(_blendInstance);
         
         //Position
         _blendInstance.GlobalPosition = _chassis.GlobalPosition;
@@ -285,7 +294,7 @@ public partial class BlendImport : Node
     {
         //Chassis rigidbody
         _chassis = new Chassis { Name = "Chassis", Mass = 300f };
-        sceneOwner.AddChild(_chassis);
+        _containerPlayerNode3D.AddChild(_chassis);
         _chassis.Owner = sceneOwner;
 
         //Wheel rigidbodies
@@ -293,10 +302,10 @@ public partial class BlendImport : Node
         _wheelFrontRight = new RigidBody3D()    { Name = "WheelFrontRight", Mass = 30f };
         _wheelBackLeft = new RigidBody3D()      { Name = "WheelBackLeft",   Mass = 30f };
         _wheelBackRight = new RigidBody3D()     { Name = "WheelBackRight",  Mass = 30f };
-        sceneOwner.AddChild(_wheelFrontLeft);
-        sceneOwner.AddChild(_wheelFrontRight);
-        sceneOwner.AddChild(_wheelBackLeft);
-        sceneOwner.AddChild(_wheelBackRight);
+        _containerPlayerNode3D.AddChild(_wheelFrontLeft);
+        _containerPlayerNode3D.AddChild(_wheelFrontRight);
+        _containerPlayerNode3D.AddChild(_wheelBackLeft);
+        _containerPlayerNode3D.AddChild(_wheelBackRight);
         _wheelFrontLeft.Owner = sceneOwner;
         _wheelFrontRight.Owner = sceneOwner;
         _wheelBackLeft.Owner = sceneOwner;
@@ -307,10 +316,10 @@ public partial class BlendImport : Node
         _jointFrontRight = new Generic6DofJoint3D() { Name = "JointFrontRight" };
         _jointBackLeft = new Generic6DofJoint3D()   { Name = "JointBackLeft" };
         _jointBackRight = new Generic6DofJoint3D()  { Name = "JointBackRight" };
-        sceneOwner.AddChild(_jointFrontLeft);
-        sceneOwner.AddChild(_jointFrontRight);
-        sceneOwner.AddChild(_jointBackLeft);
-        sceneOwner.AddChild(_jointBackRight);
+        _containerPlayerNode3D.AddChild(_jointFrontLeft);
+        _containerPlayerNode3D.AddChild(_jointFrontRight);
+        _containerPlayerNode3D.AddChild(_jointBackLeft);
+        _containerPlayerNode3D.AddChild(_jointBackRight);
         _jointFrontLeft.Owner = sceneOwner;
         _jointFrontRight.Owner = sceneOwner;
         _jointBackLeft.Owner = sceneOwner;
