@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://bifo76xmohqas"]
+[gd_scene load_steps=375 format=4 uid="uid://bifo76xmohqas"]
 
 [ext_resource type="Script" uid="uid://bvrfetrjhcf4s" path="res://Menu.cs" id="1_28aoi"]
 [ext_resource type="Script" uid="uid://b5kbctf2mnlqk" path="res://taxi/CameraPlayerController.cs" id="2_28aoi"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://digbimr3o4icv" path="res://environment/road/road_intersection_4way_sidewalk.png" id="10_gd4vy"]
 [ext_resource type="PackedScene" uid="uid://bc45x8mnb41a0" path="res://environment/road/road_east_west.blend" id="10_tw3kd"]
 [ext_resource type="Texture2D" uid="uid://b12gyeer6qef3" path="res://environment/road/road_square_asphalt_lineless.png" id="11_qw60f"]
+[ext_resource type="Texture2D" uid="uid://1gghrblfumx" path="res://environment/road/road_square_sidewalk.png" id="12_eji0w"]
+[ext_resource type="Texture2D" uid="uid://dypbn15eht8ib" path="res://environment/road/road_square_asphalt.png" id="13_qwhpj"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tw3kd"]
 points = PackedVector3Array(1.26929, -0.44382, 2.29637, 1.26929, 0.443661, 2.20646, -1.26929, -0.44382, 2.29637, 1.26929, -0.44382, 0.7728, -1.26929, 0.443661, 2.20646, 1.26929, 1.94777, 0.475189, -1.26929, -0.44382, -2.29637, 1.26929, 1.88713, 0.425287, 1.26904, -0.44382, -2.29637, -1.26929, 1.94777, 0.475189, 1.26904, 1.94753, -1.13155, -1.26929, 0.443661, -2.29637, 1.26904, 0.443661, -2.29637, -1.26929, 1.94753, -1.13155)
@@ -1502,7 +1504,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f2hyr")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_eji0w"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qt76e"]
 points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5dcb"]
@@ -1544,7 +1546,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g4dyw")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qwhpj"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sq7yr"]
 points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fy0no"]
@@ -1579,7 +1581,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fy0no")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qt76e"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r3r3k"]
 points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r7fkr"]
@@ -1614,7 +1616,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_r7fkr")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sq7yr"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_blcw0"]
 points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pgch2"]
@@ -1649,7 +1651,922 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pgch2")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r3r3k"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_50g4q"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gdld"]
+resource_name = "sidewalk"
+cull_mode = 2
+albedo_texture = ExtResource("12_eji0w")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(1, 10.6383, 1)
+uv1_offset = Vector3(0, -9.6383, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_r74p3"]
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -50, 1, 0.1, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYA"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAAAAP//AAAAAP////8AAAAA//8AAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_26bip"]
+resource_name = "road_east_west_Plane"
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -50, 1, 0.1, 100),
+"attribute_data": PackedByteArray("Oxv//wAAAAA7GwAAAAD//25D///eQMPkbkPD5N5A//9uQ4fJ3kBLrm5DS67eQIfJTz7//8A7AABPPgAAwDv//95A//9PPgAA3kAAAE8+//8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_4gdld"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("/////////78AAP//AAD/v/////8AAP+/AAD//////7///wAAAAD//wAA//8AAP//AAAAAAAA////////AAD//wAAAAD///+//////////7///wAA////vwAA//////+/AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNX//wAA//9U1f////8AAFTV//8AAAAAVNX///////9U1f///3////9/////f////3//P/+//z//v/8//7//P/+//3//f/9//3//f/9//3//f1RVqqpUVaqqVFWqqlRVqqqqqlRVqqpUVaqqVFWqqlRV")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_r74p3")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3dlgs"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp0c0"]
+resource_name = "road"
+cull_mode = 2
+albedo_texture = ExtResource("13_qwhpj")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(1, 10.6383, 1)
+uv1_offset = Vector3(0, -9.6383, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kfad1"]
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -50, 7.39999, 1e-05, 100),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8sdas"]
+resource_name = "road_east_west_Plane_001"
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -50, 7.39999, 1e-05, 100),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_sp0c0"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kfad1")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vte5o"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y0e1n"]
+_surfaces = [{
+"aabb": AABB(3.7, 0, -50, 1, 0.1, 100),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYA"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD//wAAAAD+//////8AAAAA/////wAAAAAAAP//AAAAAAAAAAAAAP7/AAD//wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ilyc4"]
+resource_name = "road_east_west_Plane_002"
+_surfaces = [{
+"aabb": AABB(3.7, 0, -50, 1, 0.1, 100),
+"attribute_data": PackedByteArray("OxsAAHc2//87G///dzYAADA5//93NgAAMDkAAHc2///AO///MDkAAMA7AAAwOf//bkPD5N5Ah8luQ4fJ3kDD5G5DS67eQA+TbkMPk95AS64="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_4gdld"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAD//wAA/7/+////////vwAA//////+//////wAA/7/+/wAA//9U1f////8AAFTV//8AAAAAVNX+//////9U1QAAAAAAAFTVAAD/////VNUAAAAA//9U1QAA//8AAFTVAAAAAP///7/+////////v/7/AAD///+/AAD//////7///wAAAAD//wAA//8AAP//AAAAAAAA////////AAD//////3////9/////f////3+qqlRVqqpUVaqqVFWqqlRVVFWqqlRVqqpUVaqqVFWqqv9//3//f/9//3//f/9//3//P/+//z//v/8//7//P/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_y0e1n")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_po8fv"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lut2i"]
+resource_name = "sidewalk"
+cull_mode = 2
+albedo_texture = ExtResource("12_eji0w")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(1, 21.2766, 1)
+uv1_offset = Vector3(0, -20.2766, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wgsq1"]
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -100, 1, 0.1, 200),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYA"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAAAAP//AAAAAP////8AAAAA//8AAAAAAAD//wAA//8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1t0y"]
+resource_name = "road_north_south_Plane"
+_surfaces = [{
+"aabb": AABB(-4.7, 0, -100, 1, 0.1, 200),
+"attribute_data": PackedByteArray("Oxv//wAAAAA7GwAAAAD//25D///eQMPkbkPD5N5A//9uQ4fJ3kBLrm5DS67eQIfJTz7//8A7AABPPgAAwDv//95A//9PPgAA3kAAAE8+//8="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_lut2i"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("/////////78AAP//AAD/v/////8AAP+/AAD//////7///wAAAAD//wAA//8AAP//AAAAAAAA////////AAD//wAAAAD///+//////////7///wAA////vwAA//////+/AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNX//wAA//9U1f////8AAFTV//8AAAAAVNX///////9U1f///3////9/////f////3//P/+//z//v/8//7//P/+//3//f/9//3//f/9//3//f1RVqqpUVaqqVFWqqlRVqqqqqlRVqqpUVaqqVFWqqlRV")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wgsq1")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ub8w1"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7n2j"]
+resource_name = "road"
+cull_mode = 2
+albedo_texture = ExtResource("13_qwhpj")
+metallic = 0.145455
+roughness = 0.740909
+uv1_scale = Vector3(1, 21.2766, 1)
+uv1_offset = Vector3(0, -20.2766, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_25q7k"]
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -100, 7.39999, 1e-05, 200),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ox3he"]
+resource_name = "road_north_south_Plane_001"
+_surfaces = [{
+"aabb": AABB(-3.7, 0, -100, 7.39999, 1e-05, 200),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_v7n2j"),
+"name": "road",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_25q7k")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ynlg5"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rxaxh"]
+_surfaces = [{
+"aabb": AABB(3.7, 0, -100, 1, 0.1, 200),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAACAAMABAAAAAIAAwABAAUABgAAAAQAAAAHAAEABgAHAAAABQABAAcABQAHAAYA"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD//wAAAAD///////8AAAAA/////wAAAAAAAP//AAAAAAAAAAAAAP//AAD//wAA//8AAAAAAAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vecu2"]
+resource_name = "road_north_south_Plane_002"
+_surfaces = [{
+"aabb": AABB(3.7, 0, -100, 1, 0.1, 200),
+"attribute_data": PackedByteArray("OxsAAHc2//87G///dzYAADA5//93NgAAMDkAAHc2///AO///MDkAAMA7AAAwOf//bkPD5N5Ah8luQ4fJ3kDD5G5DS67eQA+TbkMPk95AS64="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_lut2i"),
+"name": "sidewalk",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAD//wAA/7//////////vwAA//////+//////wAA/7///wAA//9U1f////8AAFTV//8AAAAAVNX///////9U1QAAAAAAAFTVAAD/////VNUAAAAA//9U1QAA//8AAFTVAAAAAP///7//////////v///AAD///+/AAD//////7///wAAAAD//wAA//8AAP//AAAAAAAA////////AAD//////3////9/////f////3+qqlRVqqpUVaqqVFWqqlRVVFWqqlRVqqpUVaqqVFWqqv9//3//f/9//3//f/9//3//P/+//z//v/8//7//P/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_rxaxh")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ab83r"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1xb4a"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0dnjj"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uwexw"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8pgb7"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tilu5"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_24xe2"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cj3xu"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ql764"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qoqhg"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_udg8a"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cr30j"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xu2l0"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lci31"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sc48t"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f6va0"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uk3k5"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0aysq"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vnkct"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_obcww"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mh7w8"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_623xu"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sbofu"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ans7r"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7qgyb"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_85wwt"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3bwdn"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_anwap"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6li7l"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_scpaf"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7b5e"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e0p4o"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2lw0u"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_srtcl"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_stfpn"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ua6sn"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r671y"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7xmt"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_okw77"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mvgf8"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_la53a"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4yfh"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xwta8"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7jt6t"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dv5su"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7b4te"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_quofn"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hsq7p"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y3j4s"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_owm3j"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_42hn2"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d35fc"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e6obj"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5usp4"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hjel6"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ujjy7"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hsa4t"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_on3o1"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sdudk"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1si66"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lbigh"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_puscl"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nef6q"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wf7qe"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2pjd3"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_grncb"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lt4ck"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2vsk5"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7gdda"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jlqbu"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ksrt"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hwkpn"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rb5fk"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t745p"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_roydn"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_08hjj"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yakiu"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iyftj"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kd70r"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xkvt5"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_djaty"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kpprv"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5h56d"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3fcr1"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_54ktw"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mef1a"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ojna"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_obtma"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5gm26"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ugumd"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d7cwg"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fnqaq"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yg8go"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jmua7"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ajn8"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0nbwm"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d8m4w"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0pq16"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aiu6a"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dwx0s"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i5xr5"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_btakc"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_52f3p"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nd8ld"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nwskp"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sggui"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7545d"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bao2m"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xqrv6"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l8a57"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ma2vy"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2b35b"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0jtbe"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wdyg2"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_io7lw"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8dtjd"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_32o1g"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_epjlw"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uxpk0"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2o0k3"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_moow8"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d7f5c"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sekdn"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_eifok"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yn8io"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dd3w4"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r4ad6"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8rufv"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k31nd"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qh23k"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0x07n"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2yr8t"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5hr8o"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v7a2a"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fsnlc"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_juem4"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k71xx"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b2ofk"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qlx27"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_thqwd"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w0mm7"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jty7o"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_efpm2"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_26xxc"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h6kwc"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pylys"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ovm5k"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rcw32"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_keun5"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f8gwt"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cfr5a"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yb16v"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_28utm"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dv2yc"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d6q2g"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xjme4"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yoyov"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8upcy"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qm86x"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ht6y0"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_e36vs"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4lb0y"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r3gt1"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_psh36"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ja5pd"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ikcg8"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x5mw1"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0ocjj"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uffui"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aeqah"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_koeym"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f2i3q"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mnrn7"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xjbw4"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mlt3k"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kjmpw"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bxvyg"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gx3ly"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pe2oo"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r7pa1"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4apfb"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0nu5w"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g3u32"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c02h2"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0bkon"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7gge8"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nj4ow"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_57qx4"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u2d0s"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nduib"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ng4n0"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s1l26"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m371j"]
+points = PackedVector3Array(-3.7, 0.1, 50, -3.7, 0, 50, -3.7, 0.1, -50, -4.7, 0.1, 50, -4.7, 0, 50, -3.7, 0, -50, -4.7, 0.1, -50, -4.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wv86s"]
+points = PackedVector3Array(3.7, 0, 50, -3.7, 0, 50, 3.7, 0, -50, -3.7, 0, -50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jtmct"]
+points = PackedVector3Array(4.7, 0.1, -50, 4.7, 0, -50, 3.7, 0.1, -50, 4.6999, 0.1, 50, 4.6999, 0, 50, 3.7, 0, -50, 3.7, 0.1, 50, 3.7, 0, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_232dh"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_80g26"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8cvfk"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tujsv"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yck4p"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dvl7o"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s75dk"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ch114"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ge4qk"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_eq7ci"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pe1be"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ustba"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i4d0y"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_51v1p"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fulto"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t1bq4"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oxfhi"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vowif"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5r32h"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j3bsa"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fr1vr"]
+points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kr1hx"]
+points = PackedVector3Array(-3.7, 0.1, 100, -3.7, 0, 100, -3.7, 0.1, -100, -4.7, 0.1, 100, -4.7, 0, 100, -3.7, 0, -100, -4.7, 0.1, -100, -4.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8rlr7"]
+points = PackedVector3Array(3.7, 0, 100, -3.7, 0, 100, 3.7, 0, -100, -3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w130p"]
+points = PackedVector3Array(4.7, 0.1, 100, 4.7, 0, 100, 4.7, 0.1, -100, 3.7, 0.1, 100, 3.7, 0, 100, 4.7, 0, -100, 3.7, 0.1, -100, 3.7, 0, -100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k7yf6"]
+points = PackedVector3Array(3.7, 0, -4.7, 3.7, 0.1, -4.7, 4.7, 0, -4.7, 3.7, 0, -3.7, 3.7, 0.1, -3.7, 4.7, 0.1, -4.7, 4.7, 0, -3.7, 4.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i3tlx"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0, 4.7, 4.69908, 0, -4.7, 4.69908, 0, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y1atk"]
+points = PackedVector3Array(-4.7, 0, -4.7, -4.7, 0.1, -4.7, -3.7, 0, -4.7, -4.7, 0, -3.7, -4.7, 0.1, -3.7, -3.7, 0.1, -4.7, -3.7, 0, -3.7, -3.7, 0.1, -3.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_irr0s"]
+points = PackedVector3Array(-4.7, 0, 3.7, -4.7, 0.1, 3.7, -3.7, 0, 3.7, -4.7, 0, 4.7, -4.7, 0.1, 4.7, -3.7, 0.1, 3.7, -3.7, 0, 4.7, -3.7, 0.1, 4.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_64ieb"]
 points = PackedVector3Array(3.7, 0, 3.7, 3.7, 0.1, 3.7, 4.7, 0, 3.7, 3.7, 0, 4.7, 3.7, 0.1, 4.7, 4.7, 0.1, 3.7, 4.7, 0, 4.7, 4.7, 0.1, 4.7)
 
 [node name="Root" type="Node3D"]
@@ -2084,56 +3001,2358 @@ transform = Transform3D(1, 0, 0, 0, 0.54272, 0.839914, 0, -0.839914, 0.54272, 0,
 
 [node name="Road" type="Node" parent="Environment"]
 script = ExtResource("6_huihk")
-_dimensions = Vector2i(1, 1)
+_dimensions = Vector2i(5, 3)
 _blendNorthSouth = ExtResource("5_bf3um")
 _blendEastWest = ExtResource("10_tw3kd")
 _blendIntersection4Way = ExtResource("9_huihk")
 
-[node name="road_intersection_4way" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+[node name="road_intersection_4way0" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
 
-[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way"]
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way0"]
 mesh = SubResource("ArrayMesh_f6cb8")
 skeleton = NodePath("")
 
-[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way/Sidewalk"]
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way0/Sidewalk"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way/Sidewalk/Sidewalk_col"]
-shape = SubResource("ConvexPolygonShape3D_eji0w")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way0/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_qt76e")
 
-[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way"]
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way0"]
 mesh = SubResource("ArrayMesh_i2bv2")
 skeleton = NodePath("")
 
-[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way/Road"]
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way0/Road"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way/Road/Road_col"]
-shape = SubResource("ConvexPolygonShape3D_qwhpj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way0/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_sq7yr")
 
-[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way"]
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way0"]
 mesh = SubResource("ArrayMesh_n1nsn")
 skeleton = NodePath("")
 
-[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way/Sidewalk_001"]
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_001"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way/Sidewalk_001/Sidewalk_001_col"]
-shape = SubResource("ConvexPolygonShape3D_qt76e")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_r3r3k")
 
-[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way"]
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way0"]
 mesh = SubResource("ArrayMesh_6e7yn")
 skeleton = NodePath("")
 
-[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way/Sidewalk_002"]
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_002"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way/Sidewalk_002/Sidewalk_002_col"]
-shape = SubResource("ConvexPolygonShape3D_sq7yr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_blcw0")
 
-[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way"]
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way0"]
 mesh = SubResource("ArrayMesh_c2dfr")
 skeleton = NodePath("")
 
-[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way/Sidewalk_003"]
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_003"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way/Sidewalk_003/Sidewalk_003_col"]
-shape = SubResource("ConvexPolygonShape3D_r3r3k")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way0/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_50g4q")
 
-[node name="road_east_west" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+[node name="road_east_west0" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west0"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west0/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west0/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_3dlgs")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west0"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west0/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west0/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_vte5o")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west0"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west0/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west0/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_po8fv")
+
+[node name="road_north_south0" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south0"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south0/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south0/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ub8w1")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south0"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south0/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south0/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_ynlg5")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south0"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south0/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south0/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_ab83r")
+
+[node name="road_intersection_4way1" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way1"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way1/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way1/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_1xb4a")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way1"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way1/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way1/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_0dnjj")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way1"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_uwexw")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way1"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_8pgb7")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way1"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way1/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_tilu5")
+
+[node name="road_east_west1" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west1"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west1/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west1/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_24xe2")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west1"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west1/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west1/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_cj3xu")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west1"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west1/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west1/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_ql764")
+
+[node name="road_north_south1" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south1"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south1/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south1/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_qoqhg")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south1"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south1/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south1/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_udg8a")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south1"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south1/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south1/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_cr30j")
+
+[node name="road_intersection_4way2" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way2"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way2/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way2/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_xu2l0")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way2"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way2/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way2/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_lci31")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way2"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_sc48t")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way2"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_f6va0")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way2"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way2/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_uk3k5")
+
+[node name="road_east_west2" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west2"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west2/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west2/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_0aysq")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west2"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west2/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west2/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_vnkct")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west2"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west2/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west2/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_obcww")
+
+[node name="road_north_south2" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south2"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south2/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south2/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_mh7w8")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south2"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south2/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south2/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_623xu")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south2"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south2/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south2/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_sbofu")
+
+[node name="road_intersection_4way3" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way3"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way3/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way3/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ans7r")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way3"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way3/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way3/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_7qgyb")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way3"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_85wwt")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way3"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_3bwdn")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way3"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way3/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_anwap")
+
+[node name="road_east_west3" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west3"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west3/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west3/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_6li7l")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west3"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west3/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west3/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_scpaf")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west3"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west3/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west3/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_a7b5e")
+
+[node name="road_intersection_4way4" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way4"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way4/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way4/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_e0p4o")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way4"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way4/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way4/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_2lw0u")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way4"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_srtcl")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way4"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_stfpn")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way4"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way4/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_ua6sn")
+
+[node name="road_east_west4" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.1, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west4"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west4/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west4/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_r671y")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west4"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west4/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west4/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_w7xmt")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west4"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west4/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west4/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_okw77")
+
+[node name="road_north_south4" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south4"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south4/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south4/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_mvgf8")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south4"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south4/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south4/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_la53a")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south4"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south4/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south4/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_q4yfh")
+
+[node name="road_intersection_4way5" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way5"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way5/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way5/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_xwta8")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way5"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way5/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way5/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_7jt6t")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way5"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_dv5su")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way5"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_7b4te")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way5"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way5/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_quofn")
+
+[node name="road_east_west5" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.1, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west5"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west5/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west5/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_hsq7p")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west5"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west5/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west5/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_y3j4s")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west5"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west5/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west5/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_owm3j")
+
+[node name="road_north_south5" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south5"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south5/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south5/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_42hn2")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south5"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south5/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south5/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_d35fc")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south5"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south5/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south5/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_e6obj")
+
+[node name="road_intersection_4way6" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way6"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way6/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way6/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_5usp4")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way6"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way6/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way6/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_hjel6")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way6"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_ujjy7")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way6"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_hsa4t")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way6"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way6/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_on3o1")
+
+[node name="road_east_west6" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.1, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west6"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west6/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west6/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_sdudk")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west6"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west6/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west6/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_1si66")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west6"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west6/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west6/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_lbigh")
+
+[node name="road_north_south6" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south6"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south6/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south6/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_puscl")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south6"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south6/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south6/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_nef6q")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south6"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south6/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south6/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_wf7qe")
+
+[node name="road_intersection_4way7" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.4, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way7"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way7/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way7/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_2pjd3")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way7"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way7/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way7/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_grncb")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way7"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_lt4ck")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way7"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_2vsk5")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way7"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way7/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_7gdda")
+
+[node name="road_east_west7" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.1, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west7"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west7/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west7/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_jlqbu")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west7"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west7/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west7/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_5ksrt")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west7"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west7/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west7/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_hwkpn")
+
+[node name="road_intersection_4way8" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way8"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way8/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way8/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_rb5fk")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way8"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way8/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way8/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_t745p")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way8"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_roydn")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way8"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_08hjj")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way8"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way8/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_yakiu")
+
+[node name="road_east_west8" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.5, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west8"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west8/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west8/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_iyftj")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west8"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west8/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west8/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_kd70r")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west8"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west8/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west8/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_xkvt5")
+
+[node name="road_north_south8" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south8"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south8/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south8/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_djaty")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south8"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south8/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south8/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_kpprv")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south8"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south8/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south8/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_5h56d")
+
+[node name="road_intersection_4way9" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way9"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way9/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way9/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_3fcr1")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way9"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way9/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way9/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_54ktw")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way9"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_mef1a")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way9"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_8ojna")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way9"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way9/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_obtma")
+
+[node name="road_east_west9" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.5, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west9"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west9/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west9/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_5gm26")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west9"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west9/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west9/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_ugumd")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west9"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west9/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west9/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_d7cwg")
+
+[node name="road_north_south9" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south9"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south9/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south9/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_fnqaq")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south9"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south9/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south9/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_yg8go")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south9"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south9/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south9/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_jmua7")
+
+[node name="road_intersection_4way10" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way10"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way10/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way10/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_5ajn8")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way10"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way10/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way10/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_0nbwm")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way10"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_d8m4w")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way10"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_0pq16")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way10"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way10/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_aiu6a")
+
+[node name="road_east_west10" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.5, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west10"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west10/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west10/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_dwx0s")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west10"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west10/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west10/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_i5xr5")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west10"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west10/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west10/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_btakc")
+
+[node name="road_north_south10" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south10"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south10/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south10/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_52f3p")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south10"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south10/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south10/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_nd8ld")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south10"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south10/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south10/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_nwskp")
+
+[node name="road_intersection_4way11" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 218.8, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way11"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way11/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way11/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_sggui")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way11"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way11/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way11/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_7545d")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way11"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_bao2m")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way11"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_xqrv6")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way11"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way11/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_l8a57")
+
+[node name="road_east_west11" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.5, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west11"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west11/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west11/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ma2vy")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west11"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west11/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west11/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_2b35b")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west11"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west11/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west11/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_0jtbe")
+
+[node name="road_intersection_4way12" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way12"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way12/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way12/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_wdyg2")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way12"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way12/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way12/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_io7lw")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way12"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_8dtjd")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way12"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_32o1g")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way12"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way12/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_epjlw")
+
+[node name="road_east_west12" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.9, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west12"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west12/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west12/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_uxpk0")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west12"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west12/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west12/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_2o0k3")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west12"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west12/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west12/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_moow8")
+
+[node name="road_north_south12" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south12"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south12/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south12/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_d7f5c")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south12"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south12/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south12/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_sekdn")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south12"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south12/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south12/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_eifok")
+
+[node name="road_intersection_4way13" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way13"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way13/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way13/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_yn8io")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way13"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way13/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way13/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_dd3w4")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way13"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_r4ad6")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way13"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_8rufv")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way13"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way13/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_k31nd")
+
+[node name="road_east_west13" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.9, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west13"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west13/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west13/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_qh23k")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west13"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west13/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west13/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_0x07n")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west13"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west13/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west13/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_2yr8t")
+
+[node name="road_north_south13" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south13"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south13/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south13/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_5hr8o")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south13"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south13/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south13/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_v7a2a")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south13"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south13/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south13/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_fsnlc")
+
+[node name="road_intersection_4way14" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way14"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way14/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way14/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_juem4")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way14"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way14/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way14/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_k71xx")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way14"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_b2ofk")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way14"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_qlx27")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way14"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way14/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_thqwd")
+
+[node name="road_east_west14" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.9, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west14"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west14/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west14/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_w0mm7")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west14"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west14/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west14/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_jty7o")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west14"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west14/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west14/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_efpm2")
+
+[node name="road_north_south14" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south14"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south14/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south14/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_26xxc")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south14"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south14/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south14/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_h6kwc")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south14"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south14/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south14/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_pylys")
+
+[node name="road_intersection_4way15" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 328.2, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way15"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way15/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way15/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ovm5k")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way15"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way15/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way15/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_rcw32")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way15"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_keun5")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way15"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_f8gwt")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way15"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way15/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_cfr5a")
+
+[node name="road_east_west15" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.9, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west15"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west15/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west15/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_yb16v")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west15"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west15/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west15/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_28utm")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west15"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west15/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west15/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_dv2yc")
+
+[node name="road_intersection_4way16" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way16"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way16/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way16/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_d6q2g")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way16"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way16/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way16/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_xjme4")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way16"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_yoyov")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way16"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_8upcy")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way16"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way16/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_qm86x")
+
+[node name="road_east_west16" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 492.3, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west16"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west16/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west16/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ht6y0")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west16"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west16/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west16/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_e36vs")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west16"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west16/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west16/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_4lb0y")
+
+[node name="road_north_south16" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south16"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south16/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south16/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_r3gt1")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south16"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south16/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south16/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_psh36")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south16"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south16/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south16/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_ja5pd")
+
+[node name="road_intersection_4way17" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way17"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way17/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way17/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ikcg8")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way17"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way17/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way17/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_x5mw1")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way17"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_0ocjj")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way17"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_uffui")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way17"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way17/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_aeqah")
+
+[node name="road_east_west17" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 492.3, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west17"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west17/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west17/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_koeym")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west17"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west17/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west17/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_f2i3q")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west17"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west17/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west17/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_mnrn7")
+
+[node name="road_north_south17" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south17"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south17/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south17/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_xjbw4")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south17"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south17/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south17/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_mlt3k")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south17"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south17/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south17/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_kjmpw")
+
+[node name="road_intersection_4way18" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way18"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way18/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way18/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_bxvyg")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way18"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way18/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way18/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_gx3ly")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way18"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_pe2oo")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way18"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_r7pa1")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way18"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way18/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_4apfb")
+
+[node name="road_east_west18" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 492.3, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west18"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west18/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west18/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_0nu5w")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west18"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west18/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west18/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_g3u32")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west18"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west18/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west18/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_c02h2")
+
+[node name="road_north_south18" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south18"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south18/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south18/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_0bkon")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south18"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south18/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south18/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_7gge8")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south18"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south18/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south18/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_nj4ow")
+
+[node name="road_intersection_4way19" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 437.6, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way19"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way19/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way19/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_57qx4")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way19"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way19/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way19/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_u2d0s")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way19"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_nduib")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way19"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_ng4n0")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way19"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way19/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_s1l26")
+
+[node name="road_east_west19" type="Node3D" parent="Environment/Road" instance=ExtResource("10_tw3kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 492.3, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_east_west19"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_26bip")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_east_west19/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west19/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_m371j")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_east_west19"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8sdas")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_east_west19/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west19/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_wv86s")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_east_west19"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ilyc4")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_east_west19/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_east_west19/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_jtmct")
+
+[node name="road_intersection_4way20" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 0)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way20"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way20/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way20/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_232dh")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way20"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way20/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way20/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_80g26")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way20"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_8cvfk")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way20"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_tujsv")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way20"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way20/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_yck4p")
+
+[node name="road_north_south20" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 104.7)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south20"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south20/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south20/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_dvl7o")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south20"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south20/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south20/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_s75dk")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south20"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south20/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south20/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_ch114")
+
+[node name="road_intersection_4way21" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 209.4)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way21"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way21/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way21/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_ge4qk")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way21"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way21/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way21/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_eq7ci")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way21"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_pe1be")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way21"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_ustba")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way21"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way21/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_i4d0y")
+
+[node name="road_north_south21" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 314.1)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south21"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south21/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south21/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_51v1p")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south21"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south21/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south21/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_fulto")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south21"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south21/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south21/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_t1bq4")
+
+[node name="road_intersection_4way22" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 418.8)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way22"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way22/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way22/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_oxfhi")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way22"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way22/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way22/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_vowif")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way22"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_5r32h")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way22"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_j3bsa")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way22"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way22/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_fr1vr")
+
+[node name="road_north_south22" type="Node3D" parent="Environment/Road" instance=ExtResource("5_bf3um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 523.5)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_north_south22"]
+mesh = SubResource("ArrayMesh_w1t0y")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_north_south22/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south22/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_kr1hx")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_north_south22"]
+mesh = SubResource("ArrayMesh_ox3he")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_north_south22/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south22/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_8rlr7")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_north_south22"]
+mesh = SubResource("ArrayMesh_vecu2")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_north_south22/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_north_south22/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_w130p")
+
+[node name="road_intersection_4way23" type="Node3D" parent="Environment/Road" instance=ExtResource("9_huihk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547, 0, 628.2)
+
+[node name="Sidewalk" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way23"]
+mesh = SubResource("ArrayMesh_f6cb8")
+skeleton = NodePath("")
+
+[node name="Sidewalk_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way23/Sidewalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way23/Sidewalk/Sidewalk_col"]
+shape = SubResource("ConvexPolygonShape3D_k7yf6")
+
+[node name="Road" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way23"]
+mesh = SubResource("ArrayMesh_i2bv2")
+skeleton = NodePath("")
+
+[node name="Road_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way23/Road"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way23/Road/Road_col"]
+shape = SubResource("ConvexPolygonShape3D_i3tlx")
+
+[node name="Sidewalk_001" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way23"]
+mesh = SubResource("ArrayMesh_n1nsn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_001_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_001"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_001/Sidewalk_001_col"]
+shape = SubResource("ConvexPolygonShape3D_y1atk")
+
+[node name="Sidewalk_002" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way23"]
+mesh = SubResource("ArrayMesh_6e7yn")
+skeleton = NodePath("")
+
+[node name="Sidewalk_002_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_002/Sidewalk_002_col"]
+shape = SubResource("ConvexPolygonShape3D_irr0s")
+
+[node name="Sidewalk_003" type="MeshInstance3D" parent="Environment/Road/road_intersection_4way23"]
+mesh = SubResource("ArrayMesh_c2dfr")
+skeleton = NodePath("")
+
+[node name="Sidewalk_003_col" type="StaticBody3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_003"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road/road_intersection_4way23/Sidewalk_003/Sidewalk_003_col"]
+shape = SubResource("ConvexPolygonShape3D_64ieb")

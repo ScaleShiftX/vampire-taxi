@@ -8,6 +8,8 @@ public partial class Road : Node
     [ExportToolButton("Clear Roads", Icon = "PackedScene")] public Callable ButtonClear => Callable.From(ClearRoads);
 
     [Export] private Vector2I _dimensions = new Vector2I(2, 2);
+
+    [ExportCategory(".blend Specifications")]
     [Export] private float _totalWidth = 9.4f;
     [Export] private float _northSouthLength = 200f;
     [Export] private float _eastWestLength = 100f;
@@ -28,6 +30,7 @@ public partial class Road : Node
         var sceneOwner = GetTree().EditedSceneRoot;
 
         //Rest of the fucking owl
+        int i = 0;
         for (int x = 0; x <= _dimensions.X; x++) //<= instead of < so we create the corners/intersections ;)
         {
             for (int z = 0; z <= _dimensions.Y; z++)
@@ -39,7 +42,8 @@ public partial class Road : Node
                 InstantiateFromToolAtPos(sceneOwner,
                     _blendIntersection4Way,
                     xMultiple,
-                    zMultiple
+                    zMultiple,
+                    i
                 );
 
                 //Road stretches - don't create if on the last iteration as these need to just be corners/intersections
@@ -48,7 +52,8 @@ public partial class Road : Node
                     InstantiateFromToolAtPos(sceneOwner,
                         _blendEastWest,
                         xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
-                        zMultiple
+                        zMultiple,
+                        i
                     );
                 }
 
@@ -57,9 +62,13 @@ public partial class Road : Node
                     InstantiateFromToolAtPos(sceneOwner,
                         _blendNorthSouth,
                         xMultiple,
-                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
+                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f),
+                        i
                     );
                 }
+
+                //Count total interations
+                i++;
             }
         }
 
@@ -102,11 +111,17 @@ public partial class Road : Node
         }
     }
 
-    private void InstantiateFromToolAtPos(Node sceneOwner, PackedScene packedScene, float x, float z)
+    private void InstantiateFromToolAtPos(Node sceneOwner, PackedScene packedScene, float x, float z, int iterationForName)
     {
         Node3D instance = (Node3D)packedScene.Instantiate();
         AddChild(instance);
         instance.GlobalPosition = new Vector3(x, 0f, z);
         MakeOwnedRecursive(instance, sceneOwner);
+
+        //Collapse this node in the scene tree
+        instance.SetDisplayFolded(true);
+
+        //Make sure the name remains human readable
+        instance.Name += iterationForName;
     }
 }
