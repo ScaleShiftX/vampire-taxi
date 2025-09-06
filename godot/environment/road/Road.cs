@@ -52,15 +52,18 @@ public partial class Road : Node
                 );
 
                 //Courtyard
-                InstantiateFromToolAtPos(sceneOwner,
-                    _blendCouryard,
-                    new Vector3(
-                        xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
-                        _sidewalkHeight,
-                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
-                    ),
-                    i
-                );
+                if (x < _dimensions.X && z < _dimensions.Y)
+                {
+                    InstantiateFromToolAtPos(sceneOwner,
+                        _blendCouryard,
+                        new Vector3(
+                            xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
+                            _sidewalkHeight,
+                            zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
+                        ),
+                        i
+                    );
+                }
 
                 //Road stretches - don't create if on the last iteration as these need to just be corners/intersections
                 if (x < _dimensions.X)
