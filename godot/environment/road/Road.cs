@@ -4,10 +4,13 @@ using System;
 [Tool]
 public partial class Road : Node
 {
-    [ExportToolButton("Create Roads", Icon = "PackedScene")] public Callable ButtonCreate => Callable.From(CreateRoads);
+    [ExportToolButton("(Re)Create Roads", Icon = "PackedScene")] public Callable ButtonCreate => Callable.From(CreateRoads);
     [ExportToolButton("Clear Roads", Icon = "PackedScene")] public Callable ButtonClear => Callable.From(ClearRoads);
 
     [Export] private Vector2I _dimensions = new Vector2I(2, 2);
+    [Export] private float _totalWidth = 9.4f;
+    [Export] private float _northSouthLength = 200f;
+    [Export] private float _eastWestLength = 100f;
 
     [Export] private PackedScene _blendNorthSouth;
     [Export] private PackedScene _blendEastWest;
@@ -15,16 +18,52 @@ public partial class Road : Node
 
     private void CreateRoads()
     {
+        //Clear old roads first
+        if (GetChildCount() > 0)
+        {
+            ClearRoads();
+        }
+
+        //Since this is a tool script running in-editor the owner will be different
         var sceneOwner = GetTree().EditedSceneRoot;
 
-        for (int x = 0; x < _dimensions.X; x++)
+        //Rest of the fucking owl
+        for (int x = 0; x <= _dimensions.X; x++) //<= instead of < so we create the corners/intersections ;)
         {
-            for (int z = 0; z < _dimensions.Y; z++)
+            for (int z = 0; z <= _dimensions.Y; z++)
             {
-                InstantiateFromToolAtPos(sceneOwner, _blendIntersection4Way, x, z);
+                float xMultiple = x * (_eastWestLength + _totalWidth);
+                float zMultiple = z * (_northSouthLength + _totalWidth);
+
+                //Intersection
+                InstantiateFromToolAtPos(sceneOwner,
+                    _blendIntersection4Way,
+                    xMultiple,
+                    zMultiple
+                );
+
+                //Road stretches - don't create if on the last iteration as these need to just be corners/intersections
+                if (x < _dimensions.X)
+                {
+                    InstantiateFromToolAtPos(sceneOwner,
+                        _blendEastWest,
+                        xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
+                        zMultiple
+                    );
+                }
+
+                if (z < _dimensions.Y)
+                {
+                    InstantiateFromToolAtPos(sceneOwner,
+                        _blendNorthSouth,
+                        xMultiple,
+                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
+                    );
+                }
             }
         }
 
+        //Colliders last
         CreateColliders();
     }
 
