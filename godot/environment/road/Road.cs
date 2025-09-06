@@ -11,12 +11,14 @@ public partial class Road : Node
 
     [ExportCategory(".blend Specifications")]
     [Export] private float _totalWidth = 9.4f;
+    [Export] private float _sidewalkHeight = 0.1f;
     [Export] private float _northSouthLength = 200f;
     [Export] private float _eastWestLength = 100f;
 
     [Export] private PackedScene _blendNorthSouth;
     [Export] private PackedScene _blendEastWest;
     [Export] private PackedScene _blendIntersection4Way;
+    [Export] private PackedScene _blendCouryard;
 
     private void CreateRoads()
     {
@@ -41,8 +43,22 @@ public partial class Road : Node
                 //Intersection
                 InstantiateFromToolAtPos(sceneOwner,
                     _blendIntersection4Way,
-                    xMultiple,
-                    zMultiple,
+                    new Vector3(
+                        xMultiple,
+                        0f,
+                        zMultiple
+                    ),
+                    i
+                );
+
+                //Courtyard
+                InstantiateFromToolAtPos(sceneOwner,
+                    _blendCouryard,
+                    new Vector3(
+                        xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
+                        _sidewalkHeight,
+                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
+                    ),
                     i
                 );
 
@@ -51,8 +67,11 @@ public partial class Road : Node
                 {
                     InstantiateFromToolAtPos(sceneOwner,
                         _blendEastWest,
-                        xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
-                        zMultiple,
+                        new Vector3(
+                            xMultiple + (_eastWestLength / 2f) + (_totalWidth / 2f),
+                            0f,
+                            zMultiple
+                        ),
                         i
                     );
                 }
@@ -61,8 +80,11 @@ public partial class Road : Node
                 {
                     InstantiateFromToolAtPos(sceneOwner,
                         _blendNorthSouth,
-                        xMultiple,
-                        zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f),
+                        new Vector3(
+                            xMultiple,
+                            0f,
+                            zMultiple + (_northSouthLength / 2f) + (_totalWidth / 2f)
+                        ),
                         i
                     );
                 }
@@ -111,11 +133,11 @@ public partial class Road : Node
         }
     }
 
-    private void InstantiateFromToolAtPos(Node sceneOwner, PackedScene packedScene, float x, float z, int iterationForName)
+    private void InstantiateFromToolAtPos(Node sceneOwner, PackedScene packedScene, Vector3 globalPosition, int iterationForName)
     {
         Node3D instance = (Node3D)packedScene.Instantiate();
         AddChild(instance);
-        instance.GlobalPosition = new Vector3(x, 0f, z);
+        instance.GlobalPosition = globalPosition;
         MakeOwnedRecursive(instance, sceneOwner);
 
         //Collapse this node in the scene tree
